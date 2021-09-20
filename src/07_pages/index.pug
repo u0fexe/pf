@@ -1,0 +1,36 @@
+extend ../06_parts/04_templates/base.pug
+
+block variables
+  -
+    const title = 'PF'
+    const aliases =`
+      desktop:: min-width: 769px,
+      mobile:: max-width: 768px,
+    `
+
+    const scrollMedias = `
+      {
+        type:: vertical,
+        ease:: 0.04,
+        smooth,
+        speedMultiplier:: 4,
+        dragAcceleration:: 1,
+        draggable,
+        progressVar,
+        smoothWheel:: true,
+        staticSections,
+        reverse:: -1
+      }
+    }`
+
+block presentation
+  div(role="presentation")
+    //- include ../06_parts/02_blocks/preloader/preloader.pug
+    include ../06_parts/00_shared/canvas/canvas.pug
+block main
+  div(data-scroll-path="lidOpening1" style="height: 50vh;position: fixed;")
+  div(data-scroll-path="lidOpening2" style="height: 300vh;position: fixed;")
+  include ../06_parts/03_sections/cases/cases.pug
+  include ../06_parts/03_sections/point-lights/point-lights.pug
+  include ../06_parts/03_sections/models/models.pug
+  include ../06_parts/03_sections/contacts/contacts.pug

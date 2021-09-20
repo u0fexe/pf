@@ -1,0 +1,29 @@
+%cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 100%;
+}
+
+%full {
+  height: 100%;
+  width: 100%;
+}
+
+%center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%ccenter {
+  @extend %center;
+  flex-direction: column;
+}
+
+%svg-element {
+  transform-origin: center;
+  transform-box: fill-box;
+}

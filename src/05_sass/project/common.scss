@@ -1,0 +1,26 @@
+#root {
+  @extend %hidden-scrollbar;
+  @extend %grab;
+
+  font-size: calc(100vw / 1920 * 10);
+  @include media("<=tablet-landscape") { font-size: calc(100vw / 1024 * 10); }
+  @include media("<=tablet-portrait") { font-size: calc(100vw / 768 * 10); }
+  @include media("<=phone") { font-size: calc(100vw / 500 * 10); }
+
+  position: relative;
+  overflow: hidden;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: $background-body;
+}
+
+main {
+  position: relative;
+  overflow: hidden;
+  height: auto;
+
+  display: grid;
+  justify-items: center;
+}

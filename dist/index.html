@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>PF</title>
+  </head>
+  <body>
+    <div id="root" data-aliases="
+  desktop:: min-width: 769px,
+  mobile:: max-width: 768px,
+" data-medias="
+  {
+    type:: vertical,
+    ease:: 0.04,
+    smooth,
+    speedMultiplier:: 4,
+    dragAcceleration:: 1,
+    draggable,
+    progressVar,
+    smoothWheel:: true,
+    staticSections,
+    reverse:: -1
+  }
+}">
+      <div role="presentation">
+        <div class="canvas" id="canvas"></div>
+      </div>
+      <main data-scroll-section>
+        <div data-scroll-path="lidOpening1" style="height: 50vh;position: fixed;"></div>
+        <div data-scroll-path="lidOpening2" style="height: 300vh;position: fixed;"></div>
+        <section class="cases">
+          <h2>Работы</h2>
+          <ul class="cases">
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/oxygen_system.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/solis_ortus_club.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+            <li class="case" data-case-src="multimedia/images/cases/code_inc.jpg" data-scroll-box="case">
+              <div data-title>Название</div>
+              <div data-description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
+                cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
+              </div><a data-link href="https://google.com">Посмотреть сайт</a><a data-link href="https://google.com">Посмотреть дизайн</a>
+            </li>
+          </ul>
+        </section>
+        <div class="point-lights">
+          <div class="point-light-1" data-scroll-box="pointLight" data-color="#b90007" data-intensity="1.5" data-distance="2000" data-shape="torus"></div>
+          <div class="point-light-2" data-scroll-box="pointLight" data-color="#ffc228" data-intensity="1.5" data-distance="2000" data-shape="torus"></div>
+          <div class="point-light-bottom" data-scroll-box="pointLight" data-color="#ff9800" data-intensity="2" data-distance="10000"></div>
+        </div>
+        <div class="models">
+          <div class="model-cactus-1" data-scroll-box="model" data-model-name="cactus1"></div>
+          <div class="model-cactus-2" data-scroll-box="model" data-model-name="cactus2"></div>
+        </div>
+        <section class="contacts">
+          <h2>Контакты</h2>
+          <div class="contacts__smoke" data-scroll-box="yarBoxSmoke"></div>
+          <div class="contacts__lid" data-scroll-box="yarBoxLid"></div>
+          <div class="contacts__box" data-scroll-box="yarBox" data-logo="multimedia/images/logos/yar.jpg" data-cactus="multimedia/images/logos/cactus.jpg"><a href="mailto: yar@bydesign.by">yar@bydesign.by</a><a href="tg://resolve?domain=bydesignby">telegram</a><a href="tel: 8-017-276-63-12">8-017-276-63-12</a><a href="https://yar-studio.com">yar-studio.com</a></div>
+        </section>
+      </main>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>

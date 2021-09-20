@@ -1,0 +1,284 @@
+@font-face {
+  font-family: "Arimo";
+  font-weight: 400;
+  src: url("../multimedia/fonts/Arimo/Arimo-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arimo";
+  font-weight: 700;
+  src: url("../multimedia/fonts/Arimo/Arimo-Bold.ttf");
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Arimo", sans-serif;
+  font-size: 1.6rem;
+  image-rendering: -webkit-optimize-contrast;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: white;
+}
+
+button,
+a,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border: none;
+  background: none;
+  color: inherit;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+img,
+video {
+  display: block;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+ul {
+  list-style: none;
+}
+
+svg {
+  display: block;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
+.dg.ac {
+  z-index: 1000 !important;
+}
+
+#root {
+  font-size: calc(100vw / 1920 * 10);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+main {
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  display: grid;
+  justify-items: center;
+}
+
+#root {
+  scrollbar-width: none;
+}
+
+#root::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.point-lights,
+.models,
+.preloader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.point-lights,
+.models,
+.preloader,
+.cases {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cases {
+  flex-direction: column;
+}
+
+#root {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.grabbing #root {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.preloader {
+  z-index: 4;
+  background-color: black;
+  transition: opacity 2s;
+}
+
+.loaded .preloader {
+  opacity: 0;
+}
+
+.ready .preloader {
+  display: none;
+}
+
+.preloader__logo {
+  margin-top: 2rem;
+  width: 27rem;
+}
+
+.preloader__logo__square {
+  -webkit-animation: preloader 1s infinite;
+  animation: preloader 1s infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.cases {
+  position: relative;
+  width: 100%;
+  padding-bottom: 10rem;
+  visibility: hidden;
+}
+
+.case {
+  width: 9rem;
+  height: 9rem;
+}
+
+.contacts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 14rem;
+  visibility: hidden;
+}
+
+.contacts__smoke {
+  width: 70vmin;
+  height: 70vmin;
+}
+
+.contacts__lid {
+  position: absolute;
+  left: -30vmin;
+  top: 0rem;
+  width: 71vmin;
+  height: 15vmin;
+}
+
+.contacts__box {
+  width: 70vmin;
+  height: 55vmin;
+}
+
+.model-cactus-1 {
+  position: absolute;
+  bottom: 200rem;
+  left: 20%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.model-cactus-2 {
+  position: absolute;
+  bottom: 400rem;
+  right: 20%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.model-cactus-3 {
+  position: absolute;
+  bottom: 300rem;
+  right: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.point-light-1 {
+  position: absolute;
+  top: 30rem;
+  left: -30vw;
+  --z: -500;
+  width: 2rem;
+  height: 2rem;
+}
+
+.point-light-2 {
+  position: absolute;
+  top: 60rem;
+  left: 90vw;
+  --z: -1000;
+  width: 2rem;
+  height: 2rem;
+}
+
+.point-light-bottom {
+  position: absolute;
+  bottom: -30rem;
+  width: 10rem;
+  height: 10rem;
+}
+
+@media (max-width: 1024px) {
+  #root {
+    font-size: calc(100vw / 1024 * 10);
+  }
+}
+
+@media (max-width: 768px) {
+  #root {
+    font-size: calc(100vw / 768 * 10);
+  }
+}
+
+@media (max-width: 500px) {
+  #root {
+    font-size: calc(100vw / 500 * 10);
+  }
+}

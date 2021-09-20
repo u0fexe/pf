@@ -1,0 +1,31 @@
+.point-lights {
+  @extend %cover;
+  @extend %center;
+}
+
+.point-light-1 {
+  position: absolute;
+  top: 30rem;
+  left: -30vw;
+  --z: -500;
+
+  width: 2rem;
+  height: 2rem;
+}
+
+.point-light-2 {
+  position: absolute;
+  top: 60rem;
+  left: 90vw;
+  --z: -1000;
+
+  width: 2rem;
+  height: 2rem;
+}
+
+.point-light-bottom {
+  position: absolute;
+  bottom: -30rem;
+  width: 10rem;
+  height: 10rem;
+}

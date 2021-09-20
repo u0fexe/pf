@@ -1,0 +1,37 @@
+.preloader {
+  @extend %cover;
+  @extend %center;
+  z-index: z('preloader');
+  background-color: black;
+
+  transition: opacity 2s;
+
+  .loaded & {
+    opacity: 0;
+  }
+
+  .ready & {
+    display: none;
+  }
+}
+
+.preloader__logo {
+  margin-top: 2rem;
+  width: 27rem;
+}
+
+.preloader__logo__square {
+  animation: preloader 1s infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+
+  // .loaded & {
+  //   opacity: 0;
+  // }
+
+  // @keyframes preloader {
+  //   100% {
+  //     transform: rotate(90deg);
+  //   }
+  // }
+}

@@ -1,0 +1,204 @@
+import * as THREE from 'three'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass';
+
+import * as dat from 'dat.gui'
+const gui = new dat.GUI()
+
+import ThreeCanvas from '../../Library/Three/Canvas'
+import Composer from '../../Library/Three/Composer'
+import GrainPass from '../../Library/Three/GrainPass'
+
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
+import loop from '../../Library/Tools/Loop'
+import bind from '../../Library/Utils/bind'
+
+import Loader from './Loader'
+import Train from './Train'
+import Cases from './Cases'
+import PointLights from './PointLights'
+import AmbientLight from './AmbientLight'
+import YarBoxSmoke from './YarBoxSmoke'
+import YarBoxLid from './YarBoxLid'
+import YarBox from './YarBox'
+import Models from './Models'
+import Fog from './Fog'
+import Raycaster from './Raycaster'
+import MouseLight from './MouseLight'
+import scrollModel from '../../Library/Scroll/Model'
+import { DirectionalLight } from 'three';
+
+export default class Canvas extends ThreeCanvas {
+  constructor(node) {
+    super(node, {
+      cameraZ: 2000,
+      far: 30000
+    })
+    if(!this.node) return;
+
+    scrollModel.prevents.push(gui.domElement)
+
+    this.createComposer()
+    bind(['onProgress', 'onLoad'], this)
+    this.load()
+
+    // this.renderer.shadowMap.enabled = true
+    // this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+  }
+
+  createComposer() {
+    const params = {
+      bloomStrength: 0.4,
+      bloomThreshold: 0,
+      bloomRadius: 0,
+    }
+
+    this.composer = new Composer(this.renderer, this.camera, this.scene)
+    this.composer.resize(this.size.width, this.size.height)
+
+    this.grainPass = new GrainPass()
+    this.bloomPass = new UnrealBloomPass( new THREE.Vector2( innerWidth, innerHeight ), 1.5, 0.4, 0.85 )
+
+    this.composer.addPass(this.bloomPass)
+    this.composer.addPass(this.grainPass.pass)
+
+    // const folder = gui.addFolder('composer')
+
+    // folder.add( params, 'bloomThreshold', 0.0, 1.0 ).onChange(( value ) => {
+    //   this.bloomPass.threshold = Number( value )
+    // })
+
+    // folder.add( params, 'bloomStrength', 0.0, 3.0 ).onChange(( value ) => {
+    //   this.bloomPass.strength = Number( value )
+    // })
+
+    // folder.add( params, 'bloomRadius', 0.0, 1.0 ).step( 0.01 ).onChange(( value ) => {
+    //   this.bloomPass.radius = Number( value )
+    // })
+  }
+
+  resize() {
+    super.resize()
+    this.composer && this.composer.resize(this.size.width, this.size.height)
+  }
+
+  load() {
+    this.loader = new Loader(this.onProgress, this.onLoad)
+  }
+
+  onProgress() {
+
+  }
+
+  onLoad() {
+    this.train()
+    this.fog()
+    this.pointLights()
+    this.ambientLight()
+    // this.mouseLight()
+    this.cases()
+    this.yarBox()
+    this.yarBoxLid()
+    this.yarBoxSmoke()
+    this.models()
+    this.raycaster()
+    this.activate()
+    // this.controls()
+
+    document.documentElement.classList.add('loaded')
+    document.documentElement.classList.add('ready')
+
+    // setTimeout(() => {
+    //   document.documentElement.classList.add('loaded')
+    // // }, 10000)
+    // }, 0)
+
+    // setTimeout(() => {
+    //   document.documentElement.classList.add('ready')
+    // // }, 13000)
+    // }, 3000)
+  }
+
+  train() {
+    this.train = new Train(this.camera)
+    this.scene.add(this.train.group)
+  }
+
+  fog() {
+    this.fog = new Fog(this.scene)
+    // this.fog.gui(gui)
+  }
+
+  ambientLight() {
+    this.ambientLight = new AmbientLight()
+    this.scene.add(this.ambientLight.mesh)
+    // this.ambientLight.gui(gui)
+  }
+
+  pointLights() {
+    this.pointLights = new PointLights()
+    this.train.addPassengers(this.pointLights.meshes)
+    // this.pointLights.helpers(this.scene)
+  }
+
+  cases() {
+    this.cases = new Cases(this.loader.assets.cases, this.mouseLight)
+    this.cases.addTo(this.train.group)
+  }
+
+  yarBox() {
+    this.yarBox = new YarBox(this.loader.assets.yarBox)
+    this.train.addPassenger(this.yarBox.mesh)
+    // this.yarBox.gui(gui)
+  }
+
+  yarBoxSmoke() {
+    this.yarBoxSmoke = new YarBoxSmoke(this.loader.assets.partciles.smoke, this.yarBox, this.camera)
+    this.train.addPassenger(this.yarBoxSmoke.mesh)
+    // this.yarBoxSmoke.gui(gui)
+  }
+
+  yarBoxLid() {
+    this.yarBoxLid = new YarBoxLid(this.loader.assets.yarBox, this.yarBox)
+    this.train.addPassenger(this.yarBoxLid.mesh)
+  }
+
+  models() {
+    this.models = new Models(this.loader.assets.models)
+    this.train.addPassengers(this.models.meshes)
+  }
+
+  mouseLight() {
+    this.mouseLight = new MouseLight(this.camera, this.train)
+    this.mouseLight.addOnScene(this.scene)
+    // this.mouseLight.helpers(this.scene)
+    // this.mouseLight.gui(gui)
+  }
+
+  raycaster() {
+    this.raycaster = new Raycaster(this.scene, this.camera)
+    this.cases.addTo(this.raycaster)
+  }
+
+  controls() {
+    this.controls = new OrbitControls( this.camera, this.renderer.domElement)
+    this.controls.enableDamping = true
+  }
+
+  activate() {
+    if(!this.node) return;
+    loop.add('canvas', 'tick', this)
+  }
+
+  deactivate() {
+    loop.remove('canvas')
+  }
+
+  tick(t) {
+    // this.controls.update()
+    this.train.move(t)
+    this.grainPass.tick(t)
+    this.composer.tick()
+  }
+}

@@ -1,0 +1,16 @@
+$font-primary: 'Arimo';
+// $font-special: 'Moniqa';
+
+@font-face {
+  font-family: $font-primary;
+  font-weight: 400;
+  src: url("../multimedia/fonts/Arimo/Arimo-Regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $font-primary;
+  font-weight: 700;
+  src: url("../multimedia/fonts/Arimo/Arimo-Bold.ttf");
+  font-display: swap;
+}

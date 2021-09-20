@@ -1,0 +1,18 @@
+block variables
+
+doctype html
+html(lang='ru')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    block preload
+    link(rel="stylesheet", href="styles/styles.css")
+    title=`${title ? title : 'new app'}`
+  body
+    #root(data-aliases=aliases data-medias=scrollMedias)
+      block presentation
+      main(data-scroll-section)
+        block main
+
+    block scripts
+    script(src='js/app.js')

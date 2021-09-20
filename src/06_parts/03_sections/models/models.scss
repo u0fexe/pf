@@ -1,0 +1,29 @@
+.models {
+  @extend %cover;
+  @extend %center;
+}
+
+
+.model-cactus-1 {
+  position: absolute;
+  bottom: 200rem;
+  left: 20%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.model-cactus-2 {
+  position: absolute;
+  bottom: 400rem;
+  right: 20%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.model-cactus-3 {
+  position: absolute;
+  bottom: 300rem;
+  right: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
