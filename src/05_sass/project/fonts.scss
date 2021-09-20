@@ -1,16 +1,16 @@
-$font-primary: 'Arimo';
+$font-primary: 'Oswald';
 // $font-special: 'Moniqa';
 
-@font-face {
-  font-family: $font-primary;
-  font-weight: 400;
-  src: url("../multimedia/fonts/Arimo/Arimo-Regular.ttf");
-  font-display: swap;
-}
+// @font-face {
+//   font-family: $font-primary;
+//   font-weight: 400;
+//   src: url("../multimedia/fonts/Arimo/Arimo-Regular.ttf");
+//   font-display: swap;
+// }
 
 @font-face {
   font-family: $font-primary;
   font-weight: 700;
-  src: url("../multimedia/fonts/Arimo/Arimo-Bold.ttf");
+  src: url("../multimedia/fonts/Oswald/Oswald-Bold.ttf");
   font-display: swap;
 }

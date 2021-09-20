@@ -1,14 +1,7 @@
 @font-face {
-  font-family: "Arimo";
-  font-weight: 400;
-  src: url("../multimedia/fonts/Arimo/Arimo-Regular.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Arimo";
+  font-family: "Oswald";
   font-weight: 700;
-  src: url("../multimedia/fonts/Arimo/Arimo-Bold.ttf");
+  src: url("../multimedia/fonts/Oswald/Oswald-Bold.ttf");
   font-display: swap;
 }
 
@@ -28,7 +21,7 @@ body {
 }
 
 body {
-  font-family: "Arimo", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 1.6rem;
   image-rendering: -webkit-optimize-contrast;
   text-rendering: optimizeLegibility;
