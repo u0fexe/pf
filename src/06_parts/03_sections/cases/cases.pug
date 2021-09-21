@@ -2,9 +2,9 @@ include ../../00_data/cases
 
 section.cases
   h2 Работы
-  ul.cases
+  ul.cases__list
     each c, i in cases
-      li.case(data-case-src=`multimedia/images/cases/${c.image}.jpg` data-scroll-box="case")
+      li.cases__list__item(data-case-src=`multimedia/images/cases/${c.image}.jpg` data-scroll-box="case")
         if c.name
           div(data-name)= c.name
         if c.description

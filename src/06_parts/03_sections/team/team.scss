@@ -1,0 +1,16 @@
+.team {
+  @extend %cover;
+  @extend %ccenter;
+  position: relative;
+  width: 100%;
+  visibility: hidden;
+}
+
+.team__list {
+  @extend %full;
+}
+
+.team__list__item {
+  width: 7rem;
+  height: 7rem;
+}

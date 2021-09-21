@@ -1,11 +1,10 @@
 import { Vector3 } from 'three'
 import bind from '../../Library/Utils/bind'
 
-export default class Explorable {
-  constructor(mesh, box, group, number = 1, step = 1) {
+export default class ExplorableObject {
+  constructor(mesh, box, number = 1, step = 1) {
     bind(['show', 'hide'], this)
 
-    this.group = group
     this.mesh = mesh
     this.box = box
     this.node = this.box.node
@@ -19,8 +18,6 @@ export default class Explorable {
     this.movedPosition = new Vector3()
     this.cameraScale = new Vector3()
     this.cameraRotation = new Vector3()
-
-    mesh.userData.onClick = group.onClick.bind(group)
 
     this.findData()
   }
@@ -64,10 +61,10 @@ export default class Explorable {
     })
 
     this.setScale()
-    this.setRotation()
+    this.setRotation(target, camera)
   }
 
-  hide(meshCameraPosition) {
+  hide(camera, meshCameraPosition) {
     this.setTranslation(meshCameraPosition)
     this.setScale()
     this.setRotation()

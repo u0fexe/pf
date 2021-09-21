@@ -4,55 +4,69 @@ import anime from 'animejs'
 import scrollForce from "../../Library/Scroll/Force"
 import scrollModel from "../../Library/Scroll/Model"
 import bind from '../../Library/Utils/bind'
+import loop from '../../Library/Tools/Loop'
 
-import SceneObjects from '../../Library/Three/SceneObjects'
+export default class ExploreManager {
+  constructor(explorableInterface, camera, categories) {
+    bind(['onClick', 'backToExplosion', 'tick'], this)
 
-export default class Explore extends SceneObjects {
-  constructor(name, explorableContent) {
-    super(name)
-
+    this.explorableInterface = explorableInterface
+    this.camera = camera
     this.activeObject = null
     this.currentScroll = null
-    this.explorableContent = explorableContent
-    this.objects = []
 
-    bind(['onClick', 'onScroll'], this)
+    this.concatObjects(categories)
+    this.bindEvents()
 
     scrollForce.events.addListener('add', () => {
       if(!this.currentScroll) return;
       if(Math.abs(scrollForce.scrollValue.current - this.currentScroll) > 20) {
-        this.onScroll()
+        this.backToExplosion()
       }
+    })
+
+    loop.add('exporeManager', this.tick)
+  }
+
+  concatObjects(categories) {
+    this.objects = []
+
+    categories.forEach(category => {
+      this.objects = [...this.objects, ...category.objects]
     })
   }
 
-  onClick(mesh, camera) {
+  bindEvents() {
+    this.objects.forEach(obj => obj.mesh.userData.onClick = this.onClick)
+  }
+
+  onClick(mesh) {
     const matchedObject = this.objects.find(object => object.mesh === mesh)
-    if(this.activeObject && matchedObject.mesh.uuid !== this.activeObject.mesh.uuid) this.onScroll(false)
+    if(this.activeObject && matchedObject.mesh.uuid !== this.activeObject.mesh.uuid) this.backToExplosion(false)
 
     this.activeObject = matchedObject
     this.currentScroll = scrollForce.scrollValue.current
 
     this.activeObject.outAnimation && this.activeObject.outAnimation.pause()
 
-    this.explorableContent.setContent(this.activeObject.data)
+    this.explorableInterface.setContent(this.activeObject.data)
 
     this.activeObject.inAnimation = anime({
       targets: matchedObject,
       progress: [matchedObject.progress, 1],
       easing: 'easeInOutCubic',
       duration: 1500,
-      update: () => matchedObject.show(camera)
+      update: () => matchedObject.show(this.camera)
     })
   }
 
-  onScroll(hideContent = true) {
+  backToExplosion(hideContent = true) {
     const activeObject = this.activeObject
 
     this.activeObject = null
     this.currentScroll = null
 
-    hideContent && this.explorableContent.hide()
+    hideContent && this.explorableInterface.hide()
     const meshCameraPosition = new Vector3().copy(activeObject.cameraPosition)
 
     activeObject.inAnimation && activeObject.inAnimation.pause()
@@ -61,7 +75,7 @@ export default class Explore extends SceneObjects {
       progress: [activeObject.progress, 0],
       easing: 'easeInOutCubic',
       duration: 1500,
-      update: () => activeObject.hide(meshCameraPosition)
+      update: () => activeObject.hide(this.camera, meshCameraPosition)
     })
   }
 

@@ -11,7 +11,7 @@ import getSize from '../../Library/Three/Helpers/getSize'
 import loop from '../../Library/Tools/Loop'
 import lerp from '../../Library/Utils/lerp'
 
-export default class ExplorableContent {
+export default class ExplorableInterface {
   constructor() {
     this.progress = {
       active: 0,

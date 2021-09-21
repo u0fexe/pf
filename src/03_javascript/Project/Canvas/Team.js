@@ -1,10 +1,10 @@
-import { BoxBufferGeometry, DoubleSide, MeshStandardMaterial, SphereBufferGeometry, TetrahedronBufferGeometry, Vector3 } from 'three'
-import ExplorableObject from './ExplorableObject'
+import { DoubleSide, MeshStandardMaterial, PlaneBufferGeometry, Vector3 } from 'three'
+import Employee from './Employee'
 import ExplorableObjects from './ExplorableObjects'
 
-export default class Cases extends ExplorableObjects {
+export default class Team extends ExplorableObjects {
   constructor(assets) {
-    super('case')
+    super('employee')
 
     this.construct(assets)
     this.created = true
@@ -18,13 +18,11 @@ export default class Cases extends ExplorableObjects {
     }
 
     const geometries = [
-      new BoxBufferGeometry(1, 1, 1),
-      new SphereBufferGeometry(0.5, 40, 40),
-      new TetrahedronBufferGeometry(1, 0),
+      new PlaneBufferGeometry(1, 1),
     ]
 
     this.createObjects(
-      ExplorableObject,
+      Employee,
       geometries,
       i => new MeshStandardMaterial({ side: DoubleSide, map: assets[i] })
     )
@@ -41,12 +39,12 @@ export default class Cases extends ExplorableObjects {
 
     const screenWidth = innerWidth - box.width
     const screenHeight = innerHeight - box.height
-    const frequency = Math.PI * (this.boxes.length / 3.5)
-    const minimizer = object.step * 0.6 + 0.4
+    const frequency = Math.PI * (this.boxes.length / 2)
+    const minimizer = object.step * 0.5 + 0.5
 
     mesh.position.y = box.y
-    mesh.position.x = Math.cos(object.step * frequency) * screenWidth * 1.5 * minimizer * minimizer
-    mesh.position.z = Math.sin(object.step * frequency) * ((screenHeight + screenWidth) * 0.5) * minimizer
+    mesh.position.x = Math.cos(object.step * frequency) * screenWidth * 1 * minimizer
+    mesh.position.z = Math.sin(object.step * frequency) * ((screenHeight + screenWidth) * 1) * minimizer
     object.initialPosition = new Vector3().copy(mesh.position)
   }
 }

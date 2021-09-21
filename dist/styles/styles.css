@@ -102,6 +102,7 @@ main {
   display: none;
 }
 
+.team,
 .point-lights,
 .models,
 .preloader {
@@ -112,16 +113,24 @@ main {
   width: 100%;
 }
 
+.team__list,
+.cases__list {
+  height: 100%;
+  width: 100%;
+}
+
 .point-lights,
 .models,
 .explore__column-left,
 .preloader,
+.team,
 .cases {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.team,
 .cases {
   flex-direction: column;
 }
@@ -179,7 +188,7 @@ main {
   visibility: hidden;
 }
 
-.case {
+.cases__list__item {
   width: 9rem;
   height: 9rem;
 }
@@ -302,6 +311,17 @@ main {
   bottom: -30rem;
   width: 10rem;
   height: 10rem;
+}
+
+.team {
+  position: relative;
+  width: 100%;
+  visibility: hidden;
+}
+
+.team__list__item {
+  width: 7rem;
+  height: 7rem;
 }
 
 @media (max-width: 1024px) {

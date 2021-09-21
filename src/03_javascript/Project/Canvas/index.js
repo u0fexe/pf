@@ -23,11 +23,13 @@ import YarBoxSmoke from './YarBoxSmoke'
 import YarBoxLid from './YarBoxLid'
 import YarBox from './YarBox'
 import Models from './Models'
-import ExplorableContent from './ExplorableContent'
+import ExplorableInterface from './ExplorableInterface'
+import ExploreManager from './ExploreManager'
 import Fog from './Fog'
 import Raycaster from './Raycaster'
 import MouseLight from './MouseLight'
 import scrollModel from '../../Library/Scroll/Model'
+import Team from './Team'
 
 export default class Canvas extends ThreeCanvas {
   constructor(node) {
@@ -93,17 +95,19 @@ export default class Canvas extends ThreeCanvas {
 
   onLoad() {
     this.train()
+    this.raycaster()
     this.fog()
     this.pointLights()
     this.ambientLight()
     // this.mouseLight()
-    this.explorableContent()
+    this.explorableInterface()
     this.cases()
+    this.team()
     this.yarBox()
     this.yarBoxLid()
     this.yarBoxSmoke()
     this.models()
-    this.raycaster()
+    this.exploreManager()
     this.activate()
     // this.controls()
 
@@ -126,6 +130,10 @@ export default class Canvas extends ThreeCanvas {
     this.scene.add(this.train.group)
   }
 
+  raycaster() {
+    this.raycaster = new Raycaster(this.scene, this.camera)
+  }
+
   fog() {
     this.fog = new Fog(this.scene)
     // this.fog.gui(gui)
@@ -143,15 +151,22 @@ export default class Canvas extends ThreeCanvas {
     // this.pointLights.helpers(this.scene)
   }
 
-
-  explorableContent() {
-    this.explorableContent = new ExplorableContent()
-    this.explorableContent.addTo(this.scene)
+  explorableInterface() {
+    this.explorableInterface = new ExplorableInterface()
+    this.explorableInterface.addTo(this.scene)
+    this.explorableInterface.addTo(this.raycaster)
   }
 
   cases() {
-    this.cases = new Cases(this.loader.assets.cases, this.explorableContent)
+    this.cases = new Cases(this.loader.assets.cases)
     this.cases.addTo(this.train.group)
+    this.cases.addTo(this.raycaster)
+  }
+
+  team() {
+    this.team = new Team(this.loader.assets.team)
+    this.team.addTo(this.train.group)
+    this.team.addTo(this.raycaster)
   }
 
   yarBox() {
@@ -176,17 +191,18 @@ export default class Canvas extends ThreeCanvas {
     this.train.addPassengers(this.models.meshes)
   }
 
+  exploreManager() {
+    this.exploreManager = new ExploreManager(this.explorableInterface, this.camera, [
+      this.cases,
+      this.team
+    ])
+  }
+
   mouseLight() {
     this.mouseLight = new MouseLight(this.camera, this.train)
     this.mouseLight.addOnScene(this.scene)
     // this.mouseLight.helpers(this.scene)
     // this.mouseLight.gui(gui)
-  }
-
-  raycaster() {
-    this.raycaster = new Raycaster(this.scene, this.camera)
-    this.cases.addTo(this.raycaster)
-    this.raycaster.add(this.explorableContent.elements.link.mesh)
   }
 
   controls() {

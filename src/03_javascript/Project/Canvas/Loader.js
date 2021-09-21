@@ -15,6 +15,7 @@ export default class Loader {
 
     this.assets = {
       cases: [],
+      team: [],
       background: null,
       partciles: {
         smoke: null
@@ -30,23 +31,25 @@ export default class Loader {
   }
 
   load() {
-    this.loadFonts()
     this.loadCases()
+    this.loadTeam()
     this.loadSmoke()
     this.loadYarBox()
     this.loadModels()
-  }
-
-  loadFonts() {
-    preloadFont({
-      font: 'multimedia/fonts/Oswald/Oswald-Bold.ttf'
-    })
   }
 
   loadCases() {
     document.querySelectorAll('[data-case-src]').forEach(el =>
       this.textureLoader.load(el.getAttribute('data-case-src'), texture => {
         this.assets.cases.push(texture)
+      })
+    )
+  }
+
+  loadTeam() {
+    document.querySelectorAll('[data-employee-src]').forEach(el =>
+      this.textureLoader.load(el.getAttribute('data-employee-src'), texture => {
+        this.assets.team.push(texture)
       })
     )
   }

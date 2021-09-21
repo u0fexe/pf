@@ -1,0 +1,11 @@
+include ../../00_data/team
+
+section.team
+  h2 Команда
+  ul.team__list
+    each t, i in team
+      li.team__list__item(data-employee-src=`multimedia/images/team/${t.image}.jpg` data-scroll-box="employee")
+        if t.name
+          div(data-name)= t.name
+        if t.description
+          div(data-description)= t.description
