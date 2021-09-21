@@ -18,8 +18,6 @@ export default class ExplorableContent {
     }
 
     this.mouse = {
-      x: 0,
-      y: 0,
       z: 0,
     }
 
@@ -61,7 +59,7 @@ export default class ExplorableContent {
           uDeform: { value: 0 },
           uTime: { value: 0 },
           uColor: { value: new Vector3(...color) },
-          uMouse: { value: new Vector3() },
+          uEnter: { value: 0 },
         }
       })
     }
@@ -129,25 +127,20 @@ export default class ExplorableContent {
   }
 
   updateMouse(t) {
-    const value = this.mouseElement.material.uniforms.uMouse.value
-
-    value.x = lerp(value.x, this.mouse.x, 0.1)
-    value.y = lerp(value.y, this.mouse.y, 0.1)
-    value.z = lerp(value.z, this.mouse.z, 0.1)
-    this.mouseElement.material.uniforms.uTime.value = t * 0.005
+    this.mouseElement.material.uniforms.uEnter.value = lerp(this.mouseElement.material.uniforms.uEnter.value, this.mouse.z, 0.1)
   }
 
   onMouseEnter(object) {
     if(!this.active) return;
-
     this.mouseElement = object
-
     this.mouse.z = 1
+    root.style.cursor = 'pointer'
     loop.add('explorableMouse', 'updateMouse', this)
   }
 
   onMouseLeave() {
     this.mouse.z = 0
+    root.style.cursor = ''
     loop.removeAfterDelay('explorableMouse')
   }
 
