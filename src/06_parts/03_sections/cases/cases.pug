@@ -3,12 +3,11 @@ include ../../00_data/cases
 section.cases
   h2 Работы
   ul.cases
-    each name in cases
-      li.case(data-case-src=`multimedia/images/cases/${name}.jpg` data-scroll-box="case")
-        div(data-title) Название
-        div(data-description)
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non similique nisi tempora commodi,
-          | cumque quidem dicta recusandae molestias molestiae debitis dolor animi dolorum amet velit atque totam pariatur deserunt.
-        a(data-link href="https://google.com") Посмотреть сайт
-        a(data-link href="https://google.com") Посмотреть дизайн
-
+    each c, i in cases
+      li.case(data-case-src=`multimedia/images/cases/${c.image}.jpg` data-scroll-box="case")
+        if c.name
+          div(data-name)= c.name
+        if c.description
+          div(data-description)= `${i}: ${c.description}`
+        if c.link
+          a(data-link href=c.link.href)= c.link.name

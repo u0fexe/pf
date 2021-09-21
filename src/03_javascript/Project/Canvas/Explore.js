@@ -8,18 +8,19 @@ import bind from '../../Library/Utils/bind'
 import SceneObjects from '../../Library/Three/SceneObjects'
 
 export default class Explore extends SceneObjects {
-  constructor(name) {
+  constructor(name, explorableContent) {
     super(name)
 
     this.activeObject = null
     this.currentScroll = null
+    this.explorableContent = explorableContent
     this.objects = []
 
     bind(['onClick', 'onScroll'], this)
 
     scrollForce.events.addListener('add', () => {
       if(!this.currentScroll) return;
-      if(Math.abs(scrollForce.scrollValue.current - this.currentScroll) > 100) {
+      if(Math.abs(scrollForce.scrollValue.current - this.currentScroll) > 20) {
         this.onScroll()
       }
     })
@@ -27,12 +28,14 @@ export default class Explore extends SceneObjects {
 
   onClick(mesh, camera) {
     const matchedObject = this.objects.find(object => object.mesh === mesh)
-    if(this.activeObject && matchedObject.mesh.uuid !== this.activeObject.mesh.uuid) this.onScroll()
+    if(this.activeObject && matchedObject.mesh.uuid !== this.activeObject.mesh.uuid) this.onScroll(false)
 
     this.activeObject = matchedObject
     this.currentScroll = scrollForce.scrollValue.current
 
     this.activeObject.outAnimation && this.activeObject.outAnimation.pause()
+
+    this.explorableContent.setContent(this.activeObject.data)
 
     this.activeObject.inAnimation = anime({
       targets: matchedObject,
@@ -43,12 +46,13 @@ export default class Explore extends SceneObjects {
     })
   }
 
-  onScroll() {
+  onScroll(hideContent = true) {
     const activeObject = this.activeObject
 
     this.activeObject = null
     this.currentScroll = null
 
+    hideContent && this.explorableContent.hide()
     const meshCameraPosition = new Vector3().copy(activeObject.cameraPosition)
 
     activeObject.inAnimation && activeObject.inAnimation.pause()
@@ -59,11 +63,6 @@ export default class Explore extends SceneObjects {
       duration: 1500,
       update: () => activeObject.hide(meshCameraPosition)
     })
-  }
-
-  resize(id) {
-    super.resize(id)
-    this.objects[id].resizeContent()
   }
 
   matchPosition(id) {

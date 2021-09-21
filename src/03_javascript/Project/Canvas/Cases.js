@@ -4,10 +4,12 @@ import Explore from './Explore'
 import Explorable from './Explorable'
 
 export default class Cases extends Explore {
-  constructor(assets) {
-    super('case')
+  constructor(assets, explorableContent) {
+    super('case', explorableContent)
 
     this.createObjects(assets)
+    this.created = true
+    this.events.notify('ready')
     this.loopTrue()
   }
 
@@ -34,9 +36,6 @@ export default class Cases extends Explore {
     for (let id = 0; id < this.objects.length; id++) {
       this.resize(id)
     }
-
-    this.created = true
-    this.events.notify('ready')
   }
 
   matchPosition(id) {
@@ -46,12 +45,12 @@ export default class Cases extends Explore {
 
     const screenWidth = innerWidth - box.width
     const screenHeight = innerHeight - box.height
-    const frequency = Math.PI * 12
+    const frequency = Math.PI * (this.boxes.length / 3.5)
     const minimizer = object.step * 0.6 + 0.4
 
     mesh.position.y = box.y
     mesh.position.x = Math.cos(object.step * frequency) * screenWidth * 1.5 * minimizer * minimizer
-    mesh.position.z = Math.sin(object.step * frequency) * ((screenHeight + screenWidth) * 0.8) * minimizer
+    mesh.position.z = Math.sin(object.step * frequency) * ((screenHeight + screenWidth) * 0.5) * minimizer
     object.initialPosition = new Vector3().copy(mesh.position)
   }
 }

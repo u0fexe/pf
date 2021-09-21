@@ -24,10 +24,10 @@ export default class YarBox extends SceneObject {
   }
 
   createBoxMesh() {
-    fitTexture(this.assets.logo, this.box)
+    fitTexture(this.assets.yarBox.logo, this.box)
     this.mesh = new Group()
     const material = new MeshStandardMaterial({ color: 'black', side: DoubleSide })
-    const logoMaterial = new MeshStandardMaterial({ color: 'white', map: this.assets.logo, side: DoubleSide })
+    const logoMaterial = new MeshStandardMaterial({ color: 'white', map: this.assets.yarBox.logo, side: DoubleSide })
 
     this.mesh.add(setPlane('y',  Math.PI * 0.5, material)) // px
     this.mesh.add(setPlane('y', -Math.PI * 0.5, material)) // nx

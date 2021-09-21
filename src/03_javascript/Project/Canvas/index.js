@@ -23,11 +23,11 @@ import YarBoxSmoke from './YarBoxSmoke'
 import YarBoxLid from './YarBoxLid'
 import YarBox from './YarBox'
 import Models from './Models'
+import ExplorableContent from './ExplorableContent'
 import Fog from './Fog'
 import Raycaster from './Raycaster'
 import MouseLight from './MouseLight'
 import scrollModel from '../../Library/Scroll/Model'
-import { DirectionalLight } from 'three';
 
 export default class Canvas extends ThreeCanvas {
   constructor(node) {
@@ -97,6 +97,7 @@ export default class Canvas extends ThreeCanvas {
     this.pointLights()
     this.ambientLight()
     // this.mouseLight()
+    this.explorableContent()
     this.cases()
     this.yarBox()
     this.yarBoxLid()
@@ -142,13 +143,19 @@ export default class Canvas extends ThreeCanvas {
     // this.pointLights.helpers(this.scene)
   }
 
+
+  explorableContent() {
+    this.explorableContent = new ExplorableContent()
+    this.explorableContent.addTo(this.scene)
+  }
+
   cases() {
-    this.cases = new Cases(this.loader.assets.cases, this.mouseLight)
+    this.cases = new Cases(this.loader.assets.cases, this.explorableContent)
     this.cases.addTo(this.train.group)
   }
 
   yarBox() {
-    this.yarBox = new YarBox(this.loader.assets.yarBox)
+    this.yarBox = new YarBox(this.loader.assets)
     this.train.addPassenger(this.yarBox.mesh)
     // this.yarBox.gui(gui)
   }
@@ -179,6 +186,7 @@ export default class Canvas extends ThreeCanvas {
   raycaster() {
     this.raycaster = new Raycaster(this.scene, this.camera)
     this.cases.addTo(this.raycaster)
+    this.raycaster.add(this.explorableContent.elements.link.mesh)
   }
 
   controls() {

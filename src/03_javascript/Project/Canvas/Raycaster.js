@@ -21,6 +21,16 @@ export default class Raycaster {
     this.intersectObjects = [...this.intersectObjects, ...object3ds]
   }
 
+  callback(intersection, name) {
+    this[intersection] &&
+    this[intersection].object.userData[name] &&
+    this[intersection].object.userData[name](this[intersection].object, this.camera, this[intersection].uv)
+  }
+
+  compare(intersection) {
+    return intersection && (!this.prevIntersection || intersection.object.uuid !== this.prevIntersection.object.uuid)
+  }
+
   onMouseMove( event ) {
     this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1
     this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1
@@ -29,14 +39,24 @@ export default class Raycaster {
 
     this.intersects = this.raycaster.intersectObjects(this.intersectObjects, true)
     this.currentIntersection = this.intersects[0]
+
+    this.callback('currentIntersection', 'onMouseMove')
+
+    if(!this.mouseEntered && this.compare(this.intersects[0])) {
+      this.mouseEntered = true
+      this.currentIntersection = this.intersects[0]
+      this.callback('currentIntersection', 'onMouseEnter')
+    }
+
+    else if (this.mouseEntered && (!this.intersects[0] || this.compare(this.intersects[0]))) {
+      this.mouseEntered = false
+      this.callback('prevIntersection', 'onMouseLeave')
+    }
+
+    this.prevIntersection = this.currentIntersection
   }
 
   onMouseClick() {
-    if(this.currentIntersection) {
-      this.currentIntersection.object.userData.onClick && this.currentIntersection.object.userData.onClick(
-        this.currentIntersection.object,
-        this.camera
-      )
-    }
+    this.callback('currentIntersection', 'onClick')
   }
 }

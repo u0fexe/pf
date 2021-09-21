@@ -5,6 +5,7 @@ export default class Explorable {
   constructor(mesh, box, group, number = 1, step = 1) {
     bind(['show', 'hide'], this)
 
+    this.group = group
     this.mesh = mesh
     this.box = box
     this.node = this.box.node
@@ -21,17 +22,34 @@ export default class Explorable {
 
     mesh.userData.onClick = group.onClick.bind(group)
 
-    this.findContent()
+    this.findData()
   }
 
-  findContent() {
-    const titleElement = this.node.querySelector('[data-title]')
+  findData() {
+    const nameElement = this.node.querySelector('[data-name]')
     const descriptionElement = this.node.querySelector('[data-description]')
-    const linksElements = this.node.querySelectorAll('[data-link]')
-  }
+    const linkElement = this.node.querySelector('[data-link]')
 
-  resizeContent() {
+    this.data = {}
 
+    if(nameElement) {
+      this.data.name = {
+        text: nameElement.textContent.trim(),
+      }
+    }
+
+    if(descriptionElement) {
+      this.data.description = {
+        text: descriptionElement.textContent.trim(),
+      }
+    }
+
+    if(linkElement) {
+      this.data.link = {
+        text: linkElement.textContent.trim(),
+        href: linkElement.href
+      }
+    }
   }
 
   show(camera) {

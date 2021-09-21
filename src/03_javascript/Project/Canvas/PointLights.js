@@ -2,8 +2,6 @@ import { Group, Mesh, MeshBasicMaterial, PointLight, TorusGeometry, Vector3 } fr
 import SceneObjects from '../../Library/Three/SceneObjects'
 import scrollModel from '../../Library/Scroll/Model'
 import scrollForce from '../../Library/Scroll/Force'
-import vertexShader from '../../../04_shaders/cases/vertex.glsl'
-import fragmentShader from '../../../04_shaders/cases/fragment.glsl'
 
 export default class PointLights extends SceneObjects {
   constructor() {

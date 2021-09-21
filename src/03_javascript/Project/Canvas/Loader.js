@@ -1,5 +1,6 @@
 import { LoadingManager, TextureLoader, FontLoader, CubeTextureLoader } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { preloadFont } from 'troika-three-text'
 
 export default class Loader {
   constructor(onProgress, onLoad) {
@@ -22,19 +23,24 @@ export default class Loader {
         logo: null,
         cactus: null,
       },
-      models: {
-
-      }
+      models: {},
     }
 
     this.load()
   }
 
   load() {
+    this.loadFonts()
     this.loadCases()
     this.loadSmoke()
     this.loadYarBox()
     this.loadModels()
+  }
+
+  loadFonts() {
+    preloadFont({
+      font: 'multimedia/fonts/Oswald/Oswald-Bold.ttf'
+    })
   }
 
   loadCases() {

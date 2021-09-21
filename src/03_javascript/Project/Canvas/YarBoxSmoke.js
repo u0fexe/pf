@@ -18,7 +18,7 @@ export default class YarBoxSmoke extends SceneObject {
     }
 
     this.openingProgress = 0
-    scrollModel.addPathListener('lidOpening2', 'progress', (data) => {
+    scrollModel.addPathListener('lidOpening', 'progress', (data) => {
       this.openingProgress = data.interpolatedN
     })
 
