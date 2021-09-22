@@ -27,7 +27,7 @@ export default class Particles {
   }
 
   create() {
-    const geometry = new BufferGeometry();
+    const geometry = new BufferGeometry()
     const vertices = []
 
     const frequency = -Math.PI * (this.params.count * this.params.frequencyMultimplier)
@@ -67,5 +67,6 @@ export default class Particles {
     const progress = scrollForce.scrollValue.interpolatedN * scrollForce.scrollValue.interpolatedN
     this.particles.material.uniforms.uProgress.value = progress
     this.particles.material.uniforms.uTime.value = t
+    this.particles.material.uniforms.uScrollLength.value = scrollModel.scrollLength
   }
 }

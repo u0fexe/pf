@@ -6,8 +6,8 @@ export default class Fog {
 
     this.params = {
       color: 0x0,
-      near: 3600,
-      far: 17000,
+      near: 1000,
+      far: 20000,
     }
 
     this.scene.fog = new THREEFog(this.params.color, this.params.near, this.params.far)

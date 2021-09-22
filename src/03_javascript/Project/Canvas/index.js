@@ -147,7 +147,7 @@ export default class Canvas extends ThreeCanvas {
 
   fog() {
     this.fog = new Fog(this.scene)
-    // this.fog.gui(gui)
+    this.fog.gui(gui)
   }
 
   ambientLight() {

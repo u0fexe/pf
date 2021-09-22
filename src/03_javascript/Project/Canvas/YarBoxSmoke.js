@@ -1,4 +1,4 @@
-import { AdditiveBlending, PlaneBufferGeometry, Group, Mesh, MeshLambertMaterial, DoubleSide } from "three"
+import { AdditiveBlending, PlaneBufferGeometry, Group, Mesh, MeshLambertMaterial, DoubleSide, Vector3 } from "three"
 
 import random from "../../Library/Utils/random"
 import scrollModel from "../../Library/Scroll/Model"
@@ -13,7 +13,7 @@ export default class YarBoxSmoke extends SceneObject {
     this.camera = camera
 
     this.params = {
-      count: 50,
+      count: 100,
       color: 0xbc00ff
     }
 
@@ -30,34 +30,45 @@ export default class YarBoxSmoke extends SceneObject {
 
   createParticles() {
     this.mesh = new Group()
-    this.mesh.position.y = (scrollModel.scrollLength ) * -1
 
     const geometry = new PlaneBufferGeometry(1, 1)
 
     for(let i = 0; i < this.params.count; i++) {
       const material = new MeshLambertMaterial({ color: this.params.color, map: this.texture, transparent: true, side: DoubleSide, opacity: 0.2,  depthWrite: false, blending: AdditiveBlending})
       const particle = new Mesh(geometry, material)
+      particle.userData.position = new Vector3()
+      particle.userData.scale = new Vector3()
       this.mesh.add(particle)
     }
   }
 
-  matchSize() {
-    let scale = (this.box.width + this.box.height) / 2 * 4
+  matchPosition() {
+    this.mesh.position.y = this.box.y - this.yarBox.box.height * 1.2
 
     this.mesh.children.forEach((child, i, cr) => {
       const progress = i / this.params.count
+
       child.position.set(
         (Math.random() * 2 - 0.7) * this.box.width * 3 * progress,
-        -this.box.height + this.box.height * progress * 3,
+        this.box.height * 4 * progress,
         random(this.yarBox.mesh.scale.z * 2 * progress)
       )
-      child.material.opacity = (1 - progress) * 0.3
+
+      child.userData.position.copy(child.position)
+
+      child.material.opacity = (1 - progress ) * 0.3
+    })
+  }
+
+  matchSize() {
+    let scale = (this.box.width + this.box.height) * 2
+
+    this.mesh.children.forEach((child, i, cr) => {
+      const progress = i / this.params.count
 
       const childScale = scale - (scale * 0.8) * (1 - progress * 2)
       child.scale.set(childScale, childScale, childScale)
-
-      child.userData.scale = childScale
-      child.userData.position = child.position
+      child.userData.scale.copy(child.scale)
     })
   }
 
@@ -75,15 +86,16 @@ export default class YarBoxSmoke extends SceneObject {
     this.mesh.lookAt(this.camera.position)
 
     const p2 = this.openingProgress * this.openingProgress
+    const p4 = p2 * this.openingProgress * this.openingProgress
     this.mesh.children.forEach((child, i, ca) => {
       child.rotation.z = t * Math.cos(i)
       child.scale.set(
-        child.userData.scale * this.openingProgress,
-        child.userData.scale * p2,
-        child.userData.scale * this.openingProgress,
+        child.userData.scale.x * p4,
+        child.userData.scale.y * p4,
+        child.userData.scale.z * p4,
       )
-      child.position.y = -this.box.height + (i / ca.length * 3000) * p2
-      child.position.x = child.userData.position.x * this.openingProgress
+      child.position.y = child.userData.position.y * p2
+      child.position.x = child.userData.position.x * p2
     })
   }
 }
