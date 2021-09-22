@@ -30,6 +30,7 @@ import Raycaster from './Raycaster'
 import MouseLight from './MouseLight'
 import scrollModel from '../../Library/Scroll/Model'
 import Team from './Team'
+import CameraLight from './CameraLight'
 
 export default class Canvas extends ThreeCanvas {
   constructor(node) {
@@ -106,6 +107,7 @@ export default class Canvas extends ThreeCanvas {
     this.yarBox()
     this.yarBoxLid()
     this.yarBoxSmoke()
+    this.cameraLight()
     this.models()
     this.exploreManager()
     this.activate()
@@ -184,6 +186,12 @@ export default class Canvas extends ThreeCanvas {
   yarBoxLid() {
     this.yarBoxLid = new YarBoxLid(this.loader.assets.yarBox, this.yarBox)
     this.train.addPassenger(this.yarBoxLid.mesh)
+  }
+
+  cameraLight() {
+    this.cameraLight = new CameraLight()
+    this.cameraLight.addTo(this.scene)
+    this.cameraLight.gui(gui)
   }
 
   models() {

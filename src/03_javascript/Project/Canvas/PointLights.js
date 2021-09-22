@@ -31,7 +31,7 @@ export default class PointLights extends SceneObjects {
       group.add(light)
 
       if(shape) {
-        const geometry = new TorusGeometry( 1, 0.2, 16, 100 );
+        const geometry = new TorusGeometry( 1, 0.3, 16, 100 );
         const material = new MeshBasicMaterial({color})
         const shape = new Mesh(geometry, material)
         this.shapes.push(shape)

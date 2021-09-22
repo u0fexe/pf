@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, Group, MeshStandardMaterial, PlaneBufferGeometry, SpotLight } from "three"
+import { DoubleSide, Group, MeshStandardMaterial } from "three"
 import { Text } from 'troika-three-text'
 import SceneObject from '../../Library/Three/SceneObject'
 import fitTexture from '../../Library/Three/Helpers/fitTexture'
@@ -8,16 +8,7 @@ export default class YarBox extends SceneObject {
   constructor(assets) {
     super('yarBox')
     this.assets = assets
-    this.params = {
-      color: 0xff9800,
-      intensity: 1,
-      distance: 1000,
-      angle: Math.PI/2,
-      penumbra: 1,
-    }
-
     this.createBoxMesh()
-    this.createLight()
     this.createLinks()
     this.created = true
     this.resize()
@@ -36,12 +27,6 @@ export default class YarBox extends SceneObject {
     this.mesh.add(setPlane('y',  Math.PI, material) ) // nz
   }
 
-  createLight() {
-    this.light = new SpotLight(this.params.color, this.params.intensity, this.params.distance, this.params.angle, this.params.penumbra)
-    this.light.position.z = 0.6
-    this.light.position.y = 0
-    this.mesh.add(this.light)
-  }
 
   createLinks() {
     this.links = [...this.box.node.querySelectorAll('[href]')].map(link => {
@@ -72,33 +57,5 @@ export default class YarBox extends SceneObject {
 
   matchSize() {
     this.mesh.scale.set(this.box.width, this.box.height, (this.box.width + this.box.height) / 2)
-  }
-
-  gui(gui) {
-    const folder = gui.addFolder('contactsLight')
-
-    folder.addColor(this.params, 'color').onChange((val) => {
-      this.light.color.setHex(val)
-    })
-
-    folder.add(this.params, 'intensity', 0, 10, 0.01).onChange((val) => {
-      this.light.intensity = val
-    })
-
-    folder.add(this.params, 'distance', 0, 1000, 0.01).onChange((val) => {
-      this.light.distance = val
-    })
-
-    folder.add(this.params, 'angle', 0, Math.PI/2, 0.01).onChange((val) => {
-      this.light.angle = val
-    })
-
-    folder.add(this.params, 'penumbra', 0, 1, 0.01).onChange((val) => {
-      this.light.penumbra = val
-    })
-
-    folder.add(this.light.position, 'x', -2, 2, 0.01)
-    folder.add(this.light.position, 'y', -2, 2, 0.01)
-    folder.add(this.light.position, 'z', -2, 2, 0.01)
   }
 }
