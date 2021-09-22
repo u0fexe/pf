@@ -13,7 +13,7 @@ export default class Particles {
   constructor(params) {
     this.params = {
       count: 100,
-      xMultimplier: 3,
+      xMultimplier: 2,
       zMultimplier: 1.5,
       frequencyMultimplier: 0.1,
       colors: ['#b90007', '#ffc228', '#2bd0b5'],
