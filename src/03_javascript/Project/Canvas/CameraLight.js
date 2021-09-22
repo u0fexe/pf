@@ -21,7 +21,6 @@ export default class YarBoxLight {
 
   addTo(scene) {
     scene.add(this.mesh)
-    scene.add(new SpotLightHelper(this.mesh))
   }
 
   gui(gui) {

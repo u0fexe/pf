@@ -18,6 +18,7 @@ export default class ExplorableObject {
     this.movedPosition = new Vector3()
     this.cameraScale = new Vector3()
     this.cameraRotation = new Vector3()
+    this.easing = 'spring(4, 80, 24, 0)'
 
     this.findData()
   }

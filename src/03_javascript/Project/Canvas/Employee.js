@@ -4,6 +4,7 @@ import ExplorableObject from "./ExplorableObject"
 export default class Employee extends ExplorableObject {
   constructor(mesh, box, number, step) {
     super(mesh, box, number, step)
+    this.easing = 'spring(2, 100, 30, 0)'
   }
 
   setRotation(camera) {

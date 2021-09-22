@@ -54,8 +54,7 @@ export default class ExploreManager {
     this.activeObject.inAnimation = anime({
       targets: matchedObject,
       progress: [matchedObject.progress, 1],
-      easing: 'easeInOutCubic',
-      duration: 1500,
+      easing: this.activeObject.easing,
       update: () => matchedObject.show(this.camera)
     })
   }
@@ -73,8 +72,7 @@ export default class ExploreManager {
     activeObject.outAnimation = anime({
       targets: activeObject,
       progress: [activeObject.progress, 0],
-      easing: 'easeInOutCubic',
-      duration: 1500,
+      easing: activeObject.easing,
       update: () => activeObject.hide(meshCameraPosition)
     })
   }
