@@ -45,12 +45,13 @@ export default class YarBox extends SceneObject {
       link.mesh.fontSize = 0.04
       link.mesh.position.z = -0.51
       link.mesh.position.x = -0
-      link.mesh.position.y = 0.2 - (i / this.links.length * 0.4)
+      link.mesh.position.y = 0.15 - (i / this.links.length * 0.3)
       link.mesh.anchorX = 'left'
       link.mesh.rotation.y = Math.PI
       link.mesh.color = 0xffffff
       link.mesh.material = new MeshStandardMaterial()
       link.mesh.sync()
+      link.mesh.userData.onClick = () => open(link.href, '_self').focus()
       this.mesh.add(link.mesh)
     })
   }

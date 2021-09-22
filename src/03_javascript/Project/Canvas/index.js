@@ -27,6 +27,8 @@ import Models from './Models'
 import ExplorableInterface from './ExplorableInterface'
 import ExploreManager from './ExploreManager'
 import Fog from './Fog'
+import Particles from './Particles'
+import CurveParticles from './CurveParticles'
 import Raycaster from './Raycaster'
 import MouseLight from './MouseLight'
 import scrollModel from '../../Library/Scroll/Model'
@@ -111,6 +113,7 @@ export default class Canvas extends ThreeCanvas {
     this.yarBoxSmoke()
     this.cameraLight()
     this.models()
+    this.particles()
     this.exploreManager()
     this.activate()
     // this.controls()
@@ -180,6 +183,7 @@ export default class Canvas extends ThreeCanvas {
   yarBox() {
     this.yarBox = new YarBox(this.loader.assets)
     this.train.addPassenger(this.yarBox.mesh)
+    this.raycaster.add(this.yarBox.links.map(link => link.mesh))
     // this.yarBox.gui(gui)
   }
 
@@ -203,6 +207,11 @@ export default class Canvas extends ThreeCanvas {
   models() {
     this.models = new Models(this.loader.assets.models)
     this.train.addPassengers(this.models.meshes)
+  }
+
+  particles() {
+    this.particles = new Particles()
+    this.particles.addTo(this.train.group)
   }
 
   exploreManager() {

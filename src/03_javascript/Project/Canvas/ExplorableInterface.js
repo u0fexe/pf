@@ -154,7 +154,7 @@ export default class ExplorableInterface {
     if(!this.active) return;
 
     if(this.elements.link.href) {
-      window.open(this.elements.link.href, '_blank').focus()
+      open(this.elements.link.href, '_blank').focus()
     }
   }
 

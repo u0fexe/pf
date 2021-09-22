@@ -18,7 +18,8 @@ export default class Loader {
       team: [],
       background: null,
       partciles: {
-        smoke: null
+        smoke: null,
+        dot: null
       },
       yarBox: {
         logo: null,
@@ -33,7 +34,7 @@ export default class Loader {
   load() {
     this.loadCases()
     this.loadTeam()
-    this.loadSmoke()
+    this.loadParticle()
     this.loadYarBox()
     this.loadModels()
   }
@@ -54,7 +55,7 @@ export default class Loader {
     )
   }
 
-  loadSmoke() {
+  loadParticle() {
     this.textureLoader.load('multimedia/images/particles/smoke.png', texture => {
       this.assets.partciles.smoke = texture
     })
