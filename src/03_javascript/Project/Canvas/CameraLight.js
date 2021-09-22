@@ -4,8 +4,8 @@ export default class YarBoxLight {
   constructor() {
     this.params = {
       color: 0xff9800,
-      intensity: 2,
-      distance: 3400,
+      intensity: 1,
+      distance: 8000,
       angle: 0.11,
       penumbra: 1,
     }
