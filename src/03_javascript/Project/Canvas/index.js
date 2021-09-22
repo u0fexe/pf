@@ -188,7 +188,7 @@ export default class Canvas extends ThreeCanvas {
   }
 
   yarBoxSmoke() {
-    this.yarBoxSmoke = new YarBoxSmoke(this.loader.assets.partciles.smoke, this.yarBox, this.camera)
+    this.yarBoxSmoke = new YarBoxSmoke(this.loader.assets.particles.smoke, this.yarBox, this.camera)
     this.train.addPassenger(this.yarBoxSmoke.mesh)
     // this.yarBoxSmoke.gui(gui)
   }
@@ -210,7 +210,7 @@ export default class Canvas extends ThreeCanvas {
   }
 
   particles() {
-    this.particles = new Particles()
+    this.particles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
     this.particles.addTo(this.train.group)
   }
 

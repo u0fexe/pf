@@ -1,4 +1,4 @@
-import { BufferGeometry, Points, Float32BufferAttribute, ShaderMaterial, AdditiveBlending } from 'three'
+import { BufferGeometry, Points, Float32BufferAttribute, ShaderMaterial, AdditiveBlending, Color } from 'three'
 
 import scrollModel from "../../Library/Scroll/Model"
 import scrollForce from '../../Library/Scroll/Force'
@@ -6,6 +6,7 @@ import scrollForce from '../../Library/Scroll/Force'
 import vertexShader from '../../../04_shaders/particles/vertex.glsl'
 import fragmentShader from '../../../04_shaders/particles/fragment.glsl'
 import loop from '../../Library/Tools/Loop'
+import randomFromArray from '../../Library/Utils/randomFromArray'
 
 let id = 0
 
@@ -13,10 +14,12 @@ export default class Particles {
   constructor(params) {
     this.params = {
       count: 100,
+      size: 1,
       xMultimplier: 2,
       zMultimplier: 1.5,
       frequencyMultimplier: 0.1,
-      colors: ['#b90007', '#ffc228', '#2bd0b5'],
+      texture: null,
+      colors: ['#ffffff'],
       ...params
     }
 
@@ -29,7 +32,10 @@ export default class Particles {
   create() {
     const geometry = new BufferGeometry()
     const vertices = []
+    const colors = []
+    const sizes = []
 
+    const color = new Color()
     const frequency = -Math.PI * (this.params.count * this.params.frequencyMultimplier)
     for ( let i = 0; i < this.params.count; i ++ ) {
       const step = (i / this.params.count)
@@ -38,10 +44,17 @@ export default class Particles {
       const y = -scrollModel.scrollLength + (scrollModel.scrollLength + innerHeight) * step
       const z = Math.sin(step * frequency) * ((innerHeight + innerWidth) * this.params.zMultimplier) * step
 
-      vertices.push( x, y, z )
+      color.set(randomFromArray(this.params.colors))
+      colors.push(color.r, color.g, color.b)
+
+      vertices.push(x, y, z)
+
+      sizes.push(this.params.size)
     }
 
-    geometry.setAttribute('position', new Float32BufferAttribute( vertices, 3 ) )
+    geometry.setAttribute('color', new Float32BufferAttribute( colors, 3 ))
+    geometry.setAttribute('position', new Float32BufferAttribute( vertices, 3 ))
+    geometry.setAttribute('size', new Float32BufferAttribute( sizes, 1 ))
 
     const material = new ShaderMaterial({
       vertexShader,
@@ -50,10 +63,12 @@ export default class Particles {
         uProgress: { value: 0 },
         uTime: { value: 0 },
         uScrollLength: { value: scrollModel.scrollLength },
+        uTexture: { value: this.params.texture }
       },
       depthWrite: false,
       transparent: true,
-      vertexColors: false
+      vertexColors: true,
+      blending: AdditiveBlending
     })
     this.particles = new Points( geometry, material )
   }

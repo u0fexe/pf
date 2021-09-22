@@ -17,14 +17,8 @@ export default class Loader {
       cases: [],
       team: [],
       background: null,
-      partciles: {
-        smoke: null,
-        dot: null
-      },
-      yarBox: {
-        logo: null,
-        cactus: null,
-      },
+      particles: {},
+      yarBox: {},
       models: {},
     }
 
@@ -57,7 +51,15 @@ export default class Loader {
 
   loadParticle() {
     this.textureLoader.load('multimedia/images/particles/smoke.png', texture => {
-      this.assets.partciles.smoke = texture
+      this.assets.particles.smoke = texture
+    })
+
+    this.textureLoader.load('multimedia/images/particles/leaf.png', texture => {
+      this.assets.particles.leaf = texture
+    })
+
+    this.textureLoader.load('multimedia/images/particles/dot.jpg', texture => {
+      this.assets.particles.dot = texture
     })
   }
 
