@@ -1,3 +1,4 @@
+import { Vector3 } from "three";
 import ExplorableObject from "./ExplorableObject"
 
 export default class Employee extends ExplorableObject {
@@ -5,11 +6,9 @@ export default class Employee extends ExplorableObject {
     super(mesh, box, number, step)
   }
 
-  setRotation(target, camera) {
-    if(camera) {
-      this.cameraRotation.y = Math.atan2(( camera.position.x - target.x ), ( camera.position.z - target.z ))
-      this.cameraRotation.x = Math.PI*2
-    }
+  setRotation(camera) {
+    this.cameraRotation.y = -this.mesh.parent.rotation.y % Math.PI
+    this.cameraRotation.x = Math.PI * 2
   }
 
   setScale() {
@@ -21,9 +20,9 @@ export default class Employee extends ExplorableObject {
   rotate(t, scrollProgress) {
     const r = Math.PI * scrollProgress * 3
     this.mesh.rotation.set(
-      this.cameraRotation.x * this.progress,
+      Math.cos(t * 0.3 + this.number) * r * (1 - this.progress),
       this.cameraRotation.y * this.progress,
-      t + this.number + r * Math.sin(this.number)
+      Math.cos(t * 0.3 + this.number) * r,
     )
   }
 }

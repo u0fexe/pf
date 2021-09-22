@@ -61,10 +61,10 @@ export default class ExplorableObject {
     })
 
     this.setScale()
-    this.setRotation(target, camera)
+    this.setRotation(camera)
   }
 
-  hide(camera, meshCameraPosition) {
+  hide(meshCameraPosition) {
     this.setTranslation(meshCameraPosition)
     this.setScale()
     this.setRotation()

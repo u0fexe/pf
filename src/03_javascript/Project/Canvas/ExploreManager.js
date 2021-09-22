@@ -75,7 +75,7 @@ export default class ExploreManager {
       progress: [activeObject.progress, 0],
       easing: 'easeInOutCubic',
       duration: 1500,
-      update: () => activeObject.hide(this.camera, meshCameraPosition)
+      update: () => activeObject.hide(meshCameraPosition)
     })
   }
 
