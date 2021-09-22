@@ -15,6 +15,7 @@ import loop from '../../Library/Tools/Loop'
 import bind from '../../Library/Utils/bind'
 
 import Loader from './Loader'
+import CameraMan from './CameraMan'
 import Train from './Train'
 import Cases from './Cases'
 import PointLights from './PointLights'
@@ -96,6 +97,7 @@ export default class Canvas extends ThreeCanvas {
 
   onLoad() {
     this.train()
+    this.cameraMan()
     this.raycaster()
     this.fog()
     this.pointLights()
@@ -130,6 +132,10 @@ export default class Canvas extends ThreeCanvas {
   train() {
     this.train = new Train(this.camera)
     this.scene.add(this.train.group)
+  }
+
+  cameraMan() {
+    this.cameraMan = new CameraMan(this.camera)
   }
 
   raycaster() {
