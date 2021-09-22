@@ -120,7 +120,7 @@ export default class ExplorableInterface {
     }
 
     if(this.active) {
-      this.hide(show, 700)
+      this.hide(show, 400)
     } else {
       show()
     }
@@ -175,7 +175,7 @@ export default class ExplorableInterface {
     // }
   }
 
-  show(duration = 1500) {
+  show(duration = 1000) {
     this.visibility(true)
 
     anime({
@@ -190,7 +190,7 @@ export default class ExplorableInterface {
     })
   }
 
-  hide(cb, duration = 1500) {
+  hide(cb, duration = 1000) {
     anime({
       targets: this.progress,
       active: [this.progress.active, 0],
