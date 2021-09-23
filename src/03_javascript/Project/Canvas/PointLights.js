@@ -125,9 +125,9 @@ export default class PointLights extends SceneObjects {
     const capGeometry = new CylinderBufferGeometry( 1, 1, 5, 32 )
     const capMaterial = new MeshStandardMaterial({color: 0x111111})
     const capPart1 = new Mesh( capGeometry, capMaterial )
-    capPart1.position.y = -13
+    capPart1.position.y = -12.6
     const capPart2 = new Mesh( capGeometry, capMaterial )
-    capPart2.position.y = 13
+    capPart2.position.y = 12.6
 
     shape.add(lightPart)
     shape.add(capPart1)
@@ -207,13 +207,13 @@ export default class PointLights extends SceneObjects {
   }
 
   tick(t) {
-    t *= 0.0005
+    t *= 0.0002
 
     const progress = scrollForce.scrollValue.interpolatedN * scrollForce.scrollValue.interpolatedN * scrollForce.scrollValue.interpolatedN
     const length = scrollModel.scrollLength
 
     this.meshes.forEach((mesh, i) => {
-      mesh.rotation.x = t + i
+      mesh.rotation.x = (t + i) * Math.cos(i + 1)
       mesh.position.y = mesh.userData.initialPosition.y * progress + -length + length * progress
       mesh.position.x = mesh.userData.initialPosition.x * progress
       mesh.position.z = mesh.userData.initialPosition.z * progress
