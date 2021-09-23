@@ -52,7 +52,7 @@ export default class PointLights extends SceneObjects {
         uniform vec3 uColor;
         uniform float uActive;
         void main() {
-          gl_FragColor = vec4(uColor, uActive);
+          gl_FragColor = vec4(uColor * 3.0, uActive);
         }
       `,
       uniforms: {
