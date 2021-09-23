@@ -16,9 +16,11 @@ export default class Particles {
       count: 100,
       size: 1,
       xMultimplier: 2,
+      yMultimplier: 1,
       zMultimplier: 1.5,
       frequencyMultimplier: 0.1,
       texture: null,
+      opacity: 1,
       colors: ['#ffffff'],
       ...params
     }
@@ -41,7 +43,7 @@ export default class Particles {
       const step = (i / this.params.count)
 
       const x = Math.cos(step * frequency) * innerWidth * this.params.xMultimplier * step
-      const y = -scrollModel.scrollLength + (scrollModel.scrollLength + innerHeight) * step
+      const y = -scrollModel.scrollLength + (scrollModel.scrollLength + innerHeight) * step * this.params.yMultimplier
       const z = Math.sin(step * frequency) * ((innerHeight + innerWidth) * this.params.zMultimplier) * step
 
       color.set(randomFromArray(this.params.colors))
@@ -63,12 +65,13 @@ export default class Particles {
         uProgress: { value: 0 },
         uTime: { value: 0 },
         uScrollLength: { value: scrollModel.scrollLength },
-        uTexture: { value: this.params.texture }
+        uTexture: { value: this.params.texture },
+        uOpacity: { value: this.params.opacity },
       },
       depthWrite: false,
       transparent: true,
       vertexColors: true,
-      blending: AdditiveBlending
+      blending: AdditiveBlending,
     })
     this.particles = new Points( geometry, material )
   }

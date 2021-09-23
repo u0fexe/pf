@@ -216,18 +216,20 @@ export default class Canvas extends ThreeCanvas {
 
   models() {
     this.models = new Models(this.loader.assets.models)
-    this.train.addPassengers(this.models.meshes)
+    this.models.addTo(this.train.group)
+    this.models.addTo(this.raycaster)
   }
 
   particles() {
-    this.particles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
-    this.particles.addTo(this.train.group)
+    this.dotParticles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
+    this.dotParticles.addTo(this.train.group)
   }
 
   exploreManager() {
     this.exploreManager = new ExploreManager(this.explorableInterface, this.camera, [
       this.cases,
-      this.team
+      this.team,
+      this.models
     ])
   }
 

@@ -21,15 +21,18 @@ export default class ExplorableObjects extends SceneObjects {
     const object = this.objects[id]
     const box = this.boxes[id]
 
-    object.mesh[id].position.y = box[id].y
-    object.mesh[id].position.x = box[id].x
-    object.mesh[id].position.z = box[id].z
-    this.objects[id].initialPosition.copy(this.objects[id].mesh.position)
+    object.mesh.position.y = box.y
+    object.mesh.position.x = box.x
+    object.mesh.position.z = box.z
+    object.initialPosition.copy(object.mesh.position)
   }
 
   matchSize(id) {
-    this.objects[id].mesh.scale.set(this.boxes[id].width, this.boxes[id].height, (this.boxes[id].width + this.boxes[id].height) / 2)
-    this.objects[id].initialScale.copy(this.objects[id].mesh.scale)
+    const object = this.objects[id]
+    const box = this.boxes[id]
+
+    object.mesh.scale.set(box.width, box.height, (box.width + box.height) / 2)
+    object.initialScale.copy(object.mesh.scale)
   }
 
   addTo(scene) {

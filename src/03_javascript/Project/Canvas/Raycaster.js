@@ -22,9 +22,12 @@ export default class Raycaster {
   }
 
   callback(intersection, name) {
-    this[intersection] &&
-    this[intersection].object.userData[name] &&
-    this[intersection].object.userData[name](this[intersection].object, this.camera, this[intersection].uv)
+
+    if(this[intersection]) {
+      const object = this[intersection].object.userData.mesh ? this[intersection].object.userData.mesh : this[intersection].object
+      object.userData[name] &&
+      object.userData[name](object, this.camera, this[intersection].uv)
+    }
   }
 
   compare(intersection) {

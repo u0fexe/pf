@@ -1,67 +1,48 @@
-import { Group, Mesh, MeshBasicMaterial, PointLight, TorusGeometry, Vector3 } from 'three'
-import SceneObjects from '../../Library/Three/SceneObjects'
-import scrollModel from '../../Library/Scroll/Model'
-import scrollForce from '../../Library/Scroll/Force'
+import ExplorableObjects from "./ExplorableObjects"
+import Model from "./Model"
 
-export default class Models extends SceneObjects {
+export default class Models extends ExplorableObjects {
   constructor(assets) {
     super('model')
-    this.assets = assets
-    this.createMeshes()
-    this.loopTrue()
+    this.construct(assets)
+    this.created = true
+    this.events.notify('ready')
   }
 
-  createMeshes() {
-    this.meshes = []
-
+  construct(assets) {
     for(let i = 0; i < this.boxes.length; i++) {
       const box = this.boxes[i]
       const node = box.node
 
       const modelName = node.getAttribute('data-model-name')
-      const model = this.assets[modelName]
+      const model = assets[modelName]
 
-      this.meshes.push(model)
+      this.connectParts(model)
+
+      this.objects.push(new Model(model, this.boxes[i], i, i / (this.boxes.length - 1)))
     }
 
-    this.created = true
-    for (let id = 0; id < this.meshes.length; id++) {
+    for (let id = 0; id < this.objects.length; id++) {
       this.resize(id)
     }
-    this.events.notify('ready')
   }
 
-  addOnScene(scene) {
-    super.addOnScene(scene)
+  connectParts(model) {
+    model.traverse((object) => {
+      if(object.type === 'Mesh') {
+        object.userData.mesh = model
+      }
+    })
+
   }
 
   matchPosition(id) {
-    const mesh = this.meshes[id]
+    const object = this.objects[id]
     const box = this.boxes[id]
-    mesh.position.x = box.x
-    mesh.position.y = box.y
-    mesh.position.z = box.z
-    mesh.userData.initialPosition = new Vector3().copy(mesh.position)
-  }
 
-  matchSize(id) {
-    const mesh = this.meshes[id]
-    const box = this.boxes[id]
-    mesh.scale.set(box.width, box.height, (box.width + box.height) / 2)
-  }
-
-  tick(t) {
-    t *= 0.0002
-
-    const progress = scrollForce.scrollValue.interpolatedN * scrollForce.scrollValue.interpolatedN * scrollForce.scrollValue.interpolatedN
-    const length = scrollModel.scrollLength
-
-    this.meshes.forEach((mesh, i) => {
-      mesh.rotation.x = t + i
-      mesh.rotation.z = t + i
-      mesh.position.y = mesh.userData.initialPosition.y * progress + -length + length * progress
-      mesh.position.x = mesh.userData.initialPosition.x * progress
-      mesh.position.z = mesh.userData.initialPosition.z * progress
-    })
+    object.mesh.position.y = box.y
+    object.mesh.position.x = box.x
+    object.mesh.position.z = box.z
+    object.initialPosition.copy(object.mesh.position)
   }
 }
