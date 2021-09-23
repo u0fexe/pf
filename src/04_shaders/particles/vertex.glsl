@@ -7,9 +7,11 @@ varying vec3 vColor;
 void main() {
   vec3 newPosition = position;
 
+
   newPosition.x *= uProgress;
   newPosition.y = -uScrollLength * (1.0 - uProgress) + position.y * uProgress;
   newPosition.z *= uProgress;
+
 
   newPosition.x += cos(uTime + position.x) * 100.0;
   newPosition.y += sin(uTime * 0.5 + position.y) * 200.0;

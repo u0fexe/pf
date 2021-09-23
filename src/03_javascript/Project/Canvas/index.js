@@ -221,8 +221,24 @@ export default class Canvas extends ThreeCanvas {
   }
 
   particles() {
-    this.dotParticles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
-    this.dotParticles.addTo(this.train.group)
+    const dotParticles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
+    dotParticles.addTo(this.train.group)
+
+    this.loader.assets.particles.autumn.forEach((texture, i) => {
+
+      const particles = new Particles({
+        texture,
+        colors: ['#ff00c6', '#ffffff', '#ff9800'],
+        count: 40,
+        size: 25,
+        frequencyMultimplier: 0.1 + i / 10,
+        xMultimplier: 3,
+        zMultiplier: 3,
+        opacity: 0.3
+      })
+
+      particles.addTo(this.train.group)
+    })
   }
 
   exploreManager() {

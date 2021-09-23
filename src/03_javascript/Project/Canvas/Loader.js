@@ -17,7 +17,10 @@ export default class Loader {
       cases: [],
       team: [],
       background: null,
-      particles: {},
+      particles: {
+        autumn: [],
+        summer: []
+      },
       yarBox: {},
       models: {},
     }
@@ -54,12 +57,34 @@ export default class Loader {
       this.assets.particles.smoke = texture
     })
 
-    this.textureLoader.load('multimedia/images/particles/leaf.png', texture => {
-      this.assets.particles.leaf = texture
-    })
-
     this.textureLoader.load('multimedia/images/particles/dot.jpg', texture => {
       this.assets.particles.dot = texture
+    })
+
+    this.textureLoader.load('multimedia/images/particles/autumn/leaf1.png', texture => {
+      this.assets.particles.autumn.push(texture)
+    })
+
+    this.textureLoader.load('multimedia/images/particles/autumn/leaf2.png', texture => {
+      this.assets.particles.autumn.push(texture)
+    })
+
+    this.textureLoader.load('multimedia/images/particles/autumn/leaf3.png', texture => {
+      this.assets.particles.autumn.push(texture)
+    })
+
+
+
+    this.textureLoader.load('multimedia/images/particles/summer/leaf1.png', texture => {
+      this.assets.particles.summer.push(texture)
+    })
+
+    this.textureLoader.load('multimedia/images/particles/summer/leaf2.png', texture => {
+      this.assets.particles.summer.push(texture)
+    })
+
+    this.textureLoader.load('multimedia/images/particles/summer/leaf3.png', texture => {
+      this.assets.particles.summer.push(texture)
     })
   }
 
