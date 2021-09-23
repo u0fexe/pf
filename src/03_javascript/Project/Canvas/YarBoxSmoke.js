@@ -51,7 +51,7 @@ export default class YarBoxSmoke extends SceneObject {
       child.position.set(
         (Math.random() * 2 - 0.7) * this.box.width * 3 * progress,
         this.box.height * 4 * progress,
-        random(this.yarBox.mesh.scale.z * 2 * progress)
+        random(this.yarBox.mesh.scale.z * 1.6 * progress)
       )
 
       child.userData.position.copy(child.position)
