@@ -2,7 +2,6 @@ import { AdditiveBlending, Color, CylinderBufferGeometry, Group, Mesh, MeshBasic
 import SceneObjects from '../../Library/Three/SceneObjects'
 import scrollModel from '../../Library/Scroll/Model'
 import scrollForce from '../../Library/Scroll/Force'
-import hex2rgb from '../../Library/Utils/hexToRgb'
 import anime from 'animejs'
 
 export default class PointLights extends SceneObjects {
@@ -13,8 +12,8 @@ export default class PointLights extends SceneObjects {
     this.lights = []
     this.lightsAnimation = {
       on: {
-        duration: 2000,
-        easing: 'easeOutElastic(1, .5)'
+        duration: 1000,
+        easing: 'easeOutInBounce'
       },
       off: {
         duration: 1000,
