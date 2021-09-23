@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import scrollForce from "../../Library/Scroll/Force"
 import ExplorableObject from "./ExplorableObject"
 
 export default class Employee extends ExplorableObject {
@@ -7,7 +7,7 @@ export default class Employee extends ExplorableObject {
     this.easing = 'spring(2, 100, 30, 0)'
   }
 
-  setRotation(camera) {
+  setRotation() {
     this.cameraRotation.y = -this.mesh.parent.rotation.y % Math.PI
     this.cameraRotation.x = Math.PI * 2
   }
@@ -25,5 +25,12 @@ export default class Employee extends ExplorableObject {
       this.cameraRotation.y * this.progress,
       Math.cos(t * 0.3 + this.number) * r,
     )
+  }
+
+  tick(t, scrollProgress, scrollLength, boxOffset) {
+    super.tick(t, scrollProgress, scrollLength, boxOffset)
+    if(this.mesh.material.userData.shader) {
+      this.mesh.material.userData.shader.uniforms.uTime.value = scrollForce.speed * 5.0
+    }
   }
 }

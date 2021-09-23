@@ -7,6 +7,7 @@ export default class PropertyTrigger extends ToggleTrigger {
       keep: false,
       ...settings
     })
+    this.propertyAdded = false
 
     this.events.addEvents('addProperty', 'removeProperty')
   }
@@ -14,10 +15,14 @@ export default class PropertyTrigger extends ToggleTrigger {
 
   in() {
     super.in()
-    this.events.notify('addProperty', { target: this.currentMedia.target, data: this.currentMedia.data})
+    if(!this.propertyAdded) {
+      this.events.notify('addProperty', { target: this.currentMedia.target, data: this.currentMedia.data})
+      this.propertyAdded = true
+    }
   }
 
   outChecked() {
     this.events.notify('removeProperty', { target: this.currentMedia.target, data: this.currentMedia.data})
+    this.propertyAdded = false
   }
 }

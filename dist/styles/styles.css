@@ -290,20 +290,38 @@ main {
 
 .point-light-1 {
   position: absolute;
-  top: 30rem;
+  top: -10rem;
   left: -30vw;
   --z: -500;
-  width: 2rem;
-  height: 2rem;
+  width: 0.4rem;
+  height: 0.4rem;
 }
 
 .point-light-2 {
   position: absolute;
-  top: 60rem;
-  left: 90vw;
+  top: 30rem;
+  left: 120vw;
   --z: -1000;
-  width: 2rem;
-  height: 2rem;
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
+.point-light-3 {
+  position: absolute;
+  top: 5rem;
+  left: 50vw;
+  --z: 2000;
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
+.point-light-4 {
+  position: absolute;
+  bottom: 250rem;
+  left: 150vw;
+  --z: 500;
+  width: 0.4rem;
+  height: 0.4rem;
 }
 
 .point-light-bottom {
@@ -321,7 +339,7 @@ main {
 
 .team__list__item {
   width: 7rem;
-  height: 7rem;
+  height: 9rem;
 }
 
 @media (max-width: 1024px) {

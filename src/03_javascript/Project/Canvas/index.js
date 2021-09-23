@@ -1,9 +1,8 @@
 import * as THREE from 'three'
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 
+import Stats from 'three/examples/jsm/libs/stats.module.js'
 import * as dat from 'dat.gui'
-const gui = new dat.GUI()
 
 import ThreeCanvas from '../../Library/Three/Canvas'
 import Composer from '../../Library/Three/Composer'
@@ -28,12 +27,16 @@ import ExplorableInterface from './ExplorableInterface'
 import ExploreManager from './ExploreManager'
 import Fog from './Fog'
 import Particles from './Particles'
-import CurveParticles from './CurveParticles'
 import Raycaster from './Raycaster'
 import MouseLight from './MouseLight'
 import scrollModel from '../../Library/Scroll/Model'
 import Team from './Team'
 import CameraLight from './CameraLight'
+import BottomLight from './BottomLight'
+
+const gui = new dat.GUI()
+const stats = new Stats()
+document.body.appendChild( stats.dom )
 
 export default class Canvas extends ThreeCanvas {
   constructor(node) {
@@ -55,33 +58,33 @@ export default class Canvas extends ThreeCanvas {
 
   createComposer() {
     const params = {
-      bloomStrength: 0.4,
-      bloomThreshold: 0,
-      bloomRadius: 0,
+      strength: 1,
+      threshold: 0.5,
+      radius: 1,
     }
 
     this.composer = new Composer(this.renderer, this.camera, this.scene)
     this.composer.resize(this.size.width, this.size.height)
 
     this.grainPass = new GrainPass()
-    this.bloomPass = new UnrealBloomPass( new THREE.Vector2( innerWidth, innerHeight ), 1.5, 0.4, 0.85 )
+    this.bloomPass = new UnrealBloomPass( new THREE.Vector2( innerWidth, innerHeight ), params.strength, params.radius, params.threshold )
 
     this.composer.addPass(this.bloomPass)
     this.composer.addPass(this.grainPass.pass)
 
-    // const folder = gui.addFolder('composer')
+    const folder = gui.addFolder('bloomPass')
 
-    // folder.add( params, 'bloomThreshold', 0.0, 1.0 ).onChange(( value ) => {
-    //   this.bloomPass.threshold = Number( value )
-    // })
+    folder.add( params, 'threshold', 0.0, 1.0, 0.01 ).onChange(( value ) => {
+      this.bloomPass.threshold = Number( value )
+    })
 
-    // folder.add( params, 'bloomStrength', 0.0, 3.0 ).onChange(( value ) => {
-    //   this.bloomPass.strength = Number( value )
-    // })
+    folder.add( params, 'strength', 0.0, 3.0 ).onChange(( value ) => {
+      this.bloomPass.strength = Number( value )
+    })
 
-    // folder.add( params, 'bloomRadius', 0.0, 1.0 ).step( 0.01 ).onChange(( value ) => {
-    //   this.bloomPass.radius = Number( value )
-    // })
+    folder.add( params, 'radius', 0.0, 1.0 ).step( 0.01 ).onChange(( value ) => {
+      this.bloomPass.radius = Number( value )
+    })
   }
 
   resize() {
@@ -111,6 +114,7 @@ export default class Canvas extends ThreeCanvas {
     this.yarBox()
     this.yarBoxLid()
     this.yarBoxSmoke()
+    // this.bottomLight()
     this.cameraLight()
     this.models()
     this.particles()
@@ -153,7 +157,7 @@ export default class Canvas extends ThreeCanvas {
   ambientLight() {
     this.ambientLight = new AmbientLight()
     this.scene.add(this.ambientLight.mesh)
-    // this.ambientLight.gui(gui)
+    this.ambientLight.gui(gui)
   }
 
   pointLights() {
@@ -196,6 +200,12 @@ export default class Canvas extends ThreeCanvas {
   yarBoxLid() {
     this.yarBoxLid = new YarBoxLid(this.loader.assets.yarBox, this.yarBox)
     this.train.addPassenger(this.yarBoxLid.mesh)
+  }
+
+  bottomLight() {
+    this.bottomLight = new BottomLight(this.yarBox.box)
+    this.bottomLight.addTo(this.train.group)
+    this.bottomLight.gui(gui)
   }
 
   cameraLight() {
@@ -247,5 +257,6 @@ export default class Canvas extends ThreeCanvas {
     this.train.move(t)
     this.grainPass.tick(t)
     this.composer.tick()
+    stats.update()
   }
 }
