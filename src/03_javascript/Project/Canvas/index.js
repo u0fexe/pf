@@ -10,6 +10,9 @@ import GrainPass from '../../Library/Three/GrainPass'
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
+import scroll from '../../Library/Scroll'
+import scrollModel from '../../Library/Scroll/Model'
+
 import loop from '../../Library/Tools/Loop'
 import bind from '../../Library/Utils/bind'
 
@@ -29,7 +32,6 @@ import Fog from './Fog'
 import Particles from './Particles'
 import Raycaster from './Raycaster'
 import MouseLight from './MouseLight'
-import scrollModel from '../../Library/Scroll/Model'
 import Team from './Team'
 import CameraLight from './CameraLight'
 import BottomLight from './BottomLight'
@@ -123,6 +125,7 @@ export default class Canvas extends ThreeCanvas {
     this.exploreManager()
     this.activate()
     // this.controls()
+    scroll.resize()
 
     document.documentElement.classList.add('loaded')
     document.documentElement.classList.add('ready')
