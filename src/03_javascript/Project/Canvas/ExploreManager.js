@@ -106,7 +106,7 @@ export default class ExploreManager {
       t,
       scrollForce.scrollValue.interpolatedN,
       scrollModel.scrollLength,
-      scrollModel.scrollLength * 0.15
+      scrollModel.scrollLength * 0.2
     ))
   }
 }

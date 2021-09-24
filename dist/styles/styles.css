@@ -289,8 +289,8 @@ main {
   top: -10rem;
   left: -30vw;
   --z: -500;
-  width: 0.5vmax;
-  height: 0.5vmax;
+  width: 0.45vmax;
+  height: 0.45vmax;
 }
 
 .point-light-2 {
@@ -298,8 +298,8 @@ main {
   top: 30rem;
   left: 120vw;
   --z: -1000;
-  width: 0.5vmax;
-  height: 0.5vmax;
+  width: 0.45vmax;
+  height: 0.45vmax;
 }
 
 .point-light-3 {
@@ -307,8 +307,8 @@ main {
   top: 5rem;
   left: 50vw;
   --z: 2000;
-  width: 0.5vmax;
-  height: 0.5vmax;
+  width: 0.45vmax;
+  height: 0.45vmax;
 }
 
 .point-light-4 {
@@ -316,8 +316,8 @@ main {
   bottom: 250rem;
   left: 150vw;
   --z: 500;
-  width: 0.5vmax;
-  height: 0.5vmax;
+  width: 0.45vmax;
+  height: 0.45vmax;
 }
 
 .point-light-bottom {

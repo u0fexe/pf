@@ -97,7 +97,7 @@ export default class ExplorableObject {
   translate(scrollProgress, scrollLength, boxOffset) {
     scrollProgress = scrollProgress * scrollProgress
     this.movedPosition.x = this.initialPosition.x - this.initialPosition.x * 0.95 * (1 - scrollProgress)
-    this.movedPosition.y = -scrollLength + (boxOffset + scrollLength * this.step) * scrollProgress
+    this.movedPosition.y = -scrollLength + (boxOffset + scrollLength * this.step * 0.93) * scrollProgress
     this.movedPosition.z = this.initialPosition.z * scrollProgress
 
     this.mesh.position.x = this.movedPosition.x + this.cameraPosition.x
