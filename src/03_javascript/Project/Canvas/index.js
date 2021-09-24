@@ -194,6 +194,7 @@ export default class Canvas extends ThreeCanvas {
     this.yarBox = new YarBox(this.loader.assets)
     this.train.addPassenger(this.yarBox.mesh)
     this.raycaster.add(this.yarBox.links.map(link => link.mesh))
+    this.raycaster.add(this.yarBox.mesh)
     // this.yarBox.gui(gui)
   }
 
@@ -230,13 +231,13 @@ export default class Canvas extends ThreeCanvas {
     const dotParticles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
     this.redo.add(dotParticles)
 
-    this.loader.assets.particles.autumn.forEach((texture, i) => {
+    this.loader.assets.particles.sakura.forEach((texture, i) => {
 
       const particles = new Particles({
         texture,
-        colors: ['#ff00c6', '#ffffff', '#ff9800'],
-        count: 40,
-        size: 25,
+        colors: ['#ff0000', '#e5ea00'],
+        count: 20,
+        size: 20,
         frequencyMultimplier: 0.1 + i / 10,
         xMultimplier: 3,
         zMultiplier: 3,
