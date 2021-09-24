@@ -1,6 +1,7 @@
 import { SpotLight, SpotLightHelper } from "three"
+import resizer from '../../Library/Tools/Resizer'
 
-export default class YarBoxLight {
+export default class CameraLight {
   constructor() {
     this.params = {
       color: 0xff9800,
@@ -11,6 +12,9 @@ export default class YarBoxLight {
     }
 
     this.create()
+    this.lastScene = null
+
+    resizer.add('cameraLight', 'resize', this)
   }
 
   create() {
@@ -20,7 +24,16 @@ export default class YarBoxLight {
   }
 
   addTo(scene) {
-    scene.add(this.mesh)
+    this.lastScene = scene
+    this.resize()
+  }
+
+  resize() {
+    if(innerWidth < 768) {
+      this.lastScene.remove(this.mesh)
+    } else {
+      this.lastScene.add(this.mesh)
+    }
   }
 
   gui(gui) {

@@ -163,7 +163,6 @@ export default class Canvas extends ThreeCanvas {
   ambientLight() {
     this.ambientLight = new AmbientLight()
     this.scene.add(this.ambientLight.mesh)
-    this.ambientLight.gui(gui)
   }
 
   pointLights() {
@@ -195,13 +194,11 @@ export default class Canvas extends ThreeCanvas {
     this.train.addPassenger(this.yarBox.mesh)
     this.raycaster.add(this.yarBox.links.map(link => link.mesh))
     this.raycaster.add(this.yarBox.mesh)
-    // this.yarBox.gui(gui)
   }
 
   yarBoxSmoke() {
     this.yarBoxSmoke = new YarBoxSmoke(this.loader.assets.particles.smoke, this.yarBox, this.camera)
     this.train.addPassenger(this.yarBoxSmoke.mesh)
-    // this.yarBoxSmoke.gui(gui)
   }
 
   yarBoxLid() {

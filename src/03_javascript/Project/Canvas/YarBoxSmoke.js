@@ -66,7 +66,7 @@ export default class YarBoxSmoke extends SceneObject {
     if(innerWidth > 768) {
       scale = (this.box.width + this.box.height) * 2
     } else {
-      scale = (this.box.width + this.box.height) * 0.7
+      scale = (this.box.width + this.box.height) * 0.5
     }
 
     this.mesh.children.forEach((child, i, cr) => {
@@ -75,15 +75,6 @@ export default class YarBoxSmoke extends SceneObject {
       const childScale = scale - (scale * 0.8) * (1 - progress * 2)
       child.scale.set(childScale, childScale, childScale)
       child.userData.scale.copy(child.scale)
-    })
-  }
-
-  gui(gui) {
-    const folder = gui.addFolder('smoke')
-
-    folder.addColor(this.params, 'color').onChange((val) => {
-      this.mesh.children[0].material.color.setHex(val)
-      console.log( this.mesh.children[0].material.color)
     })
   }
 
