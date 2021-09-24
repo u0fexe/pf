@@ -31,7 +31,7 @@ export default class Employee extends ExplorableObject {
     super.tick(t, scrollProgress, scrollLength, boxOffset)
     if(this.mesh.material.userData.shader) {
       this.mesh.material.userData.shader.uniforms.uTime.value = scrollForce.speed * 5.0 * (1 - this.progress)
-      this.mesh.material.userData.shader.uniforms.uActive.value = (1 - this.progress)
+      this.mesh.material.userData.shader.uniforms.uActive.value = (1 - this.progress * 0.5)
     }
   }
 }

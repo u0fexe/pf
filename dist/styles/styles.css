@@ -284,13 +284,37 @@ main {
   height: 2.5vmax;
 }
 
+.model-pencil-1 {
+  position: absolute;
+  bottom: 100rem;
+  left: 20%;
+  width: 3vmax;
+  height: 3vmax;
+}
+
+.model-pencil-2 {
+  position: absolute;
+  bottom: 200rem;
+  left: 70%;
+  width: 3vmax;
+  height: 3vmax;
+}
+
+.model-pencil-3 {
+  position: absolute;
+  bottom: 300rem;
+  left: 150%;
+  width: 3vmax;
+  height: 3vmax;
+}
+
 .point-light-1 {
   position: absolute;
   top: -10rem;
   left: -30vw;
   --z: -500;
-  width: 0.45vmax;
-  height: 0.45vmax;
+  width: 0.7vmax;
+  height: 0.7vmax;
 }
 
 .point-light-2 {
@@ -298,8 +322,8 @@ main {
   top: 30rem;
   left: 120vw;
   --z: -1000;
-  width: 0.45vmax;
-  height: 0.45vmax;
+  width: 0.7vmax;
+  height: 0.7vmax;
 }
 
 .point-light-3 {
@@ -307,8 +331,8 @@ main {
   top: 5rem;
   left: 50vw;
   --z: 2000;
-  width: 0.45vmax;
-  height: 0.45vmax;
+  width: 0.7vmax;
+  height: 0.7vmax;
 }
 
 .point-light-4 {
@@ -316,8 +340,8 @@ main {
   bottom: 250rem;
   left: 150vw;
   --z: 500;
-  width: 0.45vmax;
-  height: 0.45vmax;
+  width: 0.7vmax;
+  height: 0.7vmax;
 }
 
 .point-light-bottom {

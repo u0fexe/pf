@@ -18,8 +18,6 @@ export default class Loader {
       team: [],
       background: null,
       particles: {
-        autumn: [],
-        summer: [],
         sakura: []
       },
       yarBox: {},
@@ -62,20 +60,6 @@ export default class Loader {
       this.assets.particles.dot = texture
     })
 
-    this.textureLoader.load('multimedia/images/particles/autumn/leaf1.png', texture => {
-      this.assets.particles.autumn.push(texture)
-    })
-
-    this.textureLoader.load('multimedia/images/particles/autumn/leaf2.png', texture => {
-      this.assets.particles.autumn.push(texture)
-    })
-
-    this.textureLoader.load('multimedia/images/particles/autumn/leaf3.png', texture => {
-      this.assets.particles.autumn.push(texture)
-    })
-
-
-
     this.textureLoader.load('multimedia/images/particles/sakura/petal1.png', texture => {
       this.assets.particles.sakura.push(texture)
     })
@@ -111,8 +95,17 @@ export default class Loader {
     this.gltfLoader.load('multimedia/models/cactus1.glb', (gltf) => {
       this.assets.models.cactus1 = gltf.scene
     })
-    this.gltfLoader.load('multimedia/models/cactus2.glb', (gltf) => {
-      this.assets.models.cactus2 = gltf.scene
+
+    this.gltfLoader.load('multimedia/models/pencil1.glb', (gltf) => {
+      this.assets.models.pencil1 = gltf.scene
+    })
+
+    this.gltfLoader.load('multimedia/models/pencil2.glb', (gltf) => {
+      this.assets.models.pencil2 = gltf.scene
+    })
+
+    this.gltfLoader.load('multimedia/models/pencil3.glb', (gltf) => {
+      this.assets.models.pencil3 = gltf.scene
     })
   }
 }
