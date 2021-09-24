@@ -42,7 +42,7 @@ export default class ExploreManager {
 
   onClick(mesh) {
     const matchedObject = this.objects.find(object => object.mesh === mesh)
-    if(this.activeObject && matchedObject.mesh.uuid === this.activeObject.mesh.uuid) return;
+    if(this.activeObject && matchedObject.mesh.uuid === this.activeObject.mesh.uuid) return this.backToExplosion()
     if(this.activeObject && matchedObject.mesh.uuid !== this.activeObject.mesh.uuid) this.backToExplosion(false)
 
     this.activeObject = matchedObject

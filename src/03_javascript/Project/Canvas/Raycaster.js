@@ -1,3 +1,4 @@
+import on from '../../Library/Utils/on'
 import { Raycaster as THREERaycaster } from 'three'
 
 export default class Raycaster {
@@ -5,8 +6,8 @@ export default class Raycaster {
     this.raycaster = new THREERaycaster()
     this.mouse = { x: 0, y: 0 }
 
-    addEventListener('mousemove', this.onMouseMove.bind(this))
-    addEventListener('click', this.onMouseClick.bind(this))
+    document.addEventListener('mousemove', this.onMouseMove.bind(this))
+    document.addEventListener('click', this.onMouseClick.bind(this))
 
     this.scene = scene
     this.camera = camera
