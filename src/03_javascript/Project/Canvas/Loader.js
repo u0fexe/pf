@@ -19,7 +19,8 @@ export default class Loader {
       background: null,
       particles: {
         autumn: [],
-        summer: []
+        summer: [],
+        sakura: []
       },
       yarBox: {},
       models: {},
@@ -75,16 +76,20 @@ export default class Loader {
 
 
 
-    this.textureLoader.load('multimedia/images/particles/summer/leaf1.png', texture => {
-      this.assets.particles.summer.push(texture)
+    this.textureLoader.load('multimedia/images/particles/sakura/petal1.png', texture => {
+      this.assets.particles.sakura.push(texture)
     })
 
-    this.textureLoader.load('multimedia/images/particles/summer/leaf2.png', texture => {
-      this.assets.particles.summer.push(texture)
+    this.textureLoader.load('multimedia/images/particles/sakura/petal2.png', texture => {
+      this.assets.particles.sakura.push(texture)
     })
 
-    this.textureLoader.load('multimedia/images/particles/summer/leaf3.png', texture => {
-      this.assets.particles.summer.push(texture)
+    this.textureLoader.load('multimedia/images/particles/sakura/petal3.png', texture => {
+      this.assets.particles.sakura.push(texture)
+    })
+
+    this.textureLoader.load('multimedia/images/particles/sakura/petal4.png', texture => {
+      this.assets.particles.sakura.push(texture)
     })
   }
 

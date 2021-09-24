@@ -26,12 +26,12 @@ export default class Particles {
     }
 
     this.id = id++
-    this.create()
+    this.construct()
 
     loop.add('particles' + this.id, 'tick', this)
   }
 
-  create() {
+  construct() {
     const geometry = new BufferGeometry()
     const vertices = []
     const colors = []
@@ -73,18 +73,14 @@ export default class Particles {
       vertexColors: true,
       blending: AdditiveBlending,
     })
-    this.particles = new Points( geometry, material )
-  }
-
-  addTo(scene) {
-    scene.add(this.particles)
+    this.mesh = new Points( geometry, material )
   }
 
   tick(t) {
     t *= 0.0005
     const progress = scrollForce.scrollValue.interpolatedN * scrollForce.scrollValue.interpolatedN
-    this.particles.material.uniforms.uProgress.value = progress
-    this.particles.material.uniforms.uTime.value = t
-    this.particles.material.uniforms.uScrollLength.value = scrollModel.scrollLength
+    this.mesh.material.uniforms.uProgress.value = progress
+    this.mesh.material.uniforms.uTime.value = t
+    this.mesh.material.uniforms.uScrollLength.value = scrollModel.scrollLength
   }
 }

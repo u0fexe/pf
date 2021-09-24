@@ -61,7 +61,13 @@ export default class YarBoxSmoke extends SceneObject {
   }
 
   matchSize() {
-    let scale = (this.box.width + this.box.height) * 2
+    let scale = 0
+
+    if(innerWidth > 768) {
+      scale = (this.box.width + this.box.height) * 2
+    } else {
+      scale = (this.box.width + this.box.height) * 0.7
+    }
 
     this.mesh.children.forEach((child, i, cr) => {
       const progress = i / this.params.count

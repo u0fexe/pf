@@ -25,7 +25,6 @@ export default class YarBoxLight {
 
   gui(gui) {
     const folder = gui.addFolder('cameraLight')
-    folder.open()
 
     folder.addColor(this.params, 'color').onChange((val) => {
       this.mesh.color.setHex(val)

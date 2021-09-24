@@ -20,7 +20,7 @@ export default class YarBoxLid extends SceneObject {
     this.mesh = new Group()
     this.mesh.position.z = this.box.z
     this.mesh.rotation.x = 1
-    this.mesh.rotation.y = 0.5
+    this.mesh.rotation.y = 0
     this.mesh.rotation.z = 0.5
     const material = new MeshStandardMaterial({ color: 0x000000, side: DoubleSide })
     const cactusMaterialFront = new MeshStandardMaterial({ color: 0xFFFFFF, map: this.assets.cactus, side: FrontSide })
@@ -49,9 +49,8 @@ export default class YarBoxLid extends SceneObject {
 
   tick() {
     const progress = scrollForce.scrollValue.interpolatedN * 2
-    const length = scrollModel.scrollLength
     this.mesh.position.z = 1000 * progress
-    this.mesh.position.y = this.mesh.userData.position.y - (this.yarBox.mesh.scale.y + this.box.height * 0.6) * (1 - progress)
+    this.mesh.position.y = this.mesh.userData.position.y + (scrollModel.scrollLength * 0.1) * progress
     this.mesh.position.x = this.mesh.userData.position.x * progress
     this.mesh.rotation.x = this.mesh.userData.rotation.x * progress
     this.mesh.rotation.y = this.mesh.userData.rotation.y * progress

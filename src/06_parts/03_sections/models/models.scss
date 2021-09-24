@@ -1,12 +1,13 @@
 .models {
   @extend %cover;
   @extend %center;
+  visibility: hidden;
 }
 
 .model-cactus-1 {
   position: absolute;
   bottom: 400rem;
   left: 20%;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.5vmax;
+  height: 2.5vmax;
 }

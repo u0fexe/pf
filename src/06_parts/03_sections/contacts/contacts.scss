@@ -1,27 +1,37 @@
 .contacts {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding-bottom: 21vh;
+  @extend %center;
+  width: 100vw;
+  height: 100vh;
   visibility: hidden;
+
+  h2 {
+    position: absolute;
+  }
+}
+
+.contacts__inner {
+  position: relative;
+
+  width: 40vmax;
+  height: 30vmax;
 }
 
 .contacts__smoke {
-  width: 70vmin;
-  height: 70vmin;
+  position: absolute;
+  bottom: 80%;
+  width: 100%;
+  height: 150%;
 }
 
 .contacts__lid {
   position: absolute;
-  left: -30vmin;
-  top: 0rem;
-  width: 71vmin;
-  height: 15vmin;
+  top: -12%;
+  width: 100%;
+  height: 15%;
 }
 
 .contacts__box {
-  width: 70vmin;
-  height: 55vmin;
+  width: 100%;
+  height: 100%;
 }

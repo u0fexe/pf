@@ -33,6 +33,7 @@ import scrollModel from '../../Library/Scroll/Model'
 import Team from './Team'
 import CameraLight from './CameraLight'
 import BottomLight from './BottomLight'
+import Redo from './Redo'
 
 const gui = new dat.GUI()
 const stats = new Stats()
@@ -103,6 +104,7 @@ export default class Canvas extends ThreeCanvas {
   onLoad() {
     this.train()
     this.cameraMan()
+    this.redo()
     this.raycaster()
     this.fog()
     this.pointLights()
@@ -143,6 +145,10 @@ export default class Canvas extends ThreeCanvas {
 
   cameraMan() {
     this.cameraMan = new CameraMan(this.camera)
+  }
+
+  redo() {
+    this.redo = new Redo(this.train.group)
   }
 
   raycaster() {
@@ -222,7 +228,7 @@ export default class Canvas extends ThreeCanvas {
 
   particles() {
     const dotParticles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
-    dotParticles.addTo(this.train.group)
+    this.redo.add(dotParticles)
 
     this.loader.assets.particles.autumn.forEach((texture, i) => {
 
@@ -237,7 +243,7 @@ export default class Canvas extends ThreeCanvas {
         opacity: 0.3
       })
 
-      particles.addTo(this.train.group)
+      this.redo.add(particles)
     })
   }
 

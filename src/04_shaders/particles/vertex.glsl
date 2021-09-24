@@ -13,9 +13,9 @@ void main() {
   newPosition.z *= uProgress;
 
 
-  newPosition.x += cos(uTime + position.x) * 100.0;
-  newPosition.y += sin(uTime * 0.5 + position.y) * 200.0;
-  newPosition.z += sin(uTime + position.y) * 100.0;
+  newPosition.x += cos(uTime + position.x) * 100.0 ;
+  newPosition.y += sin(uTime * 0.5 + position.y) * 200.0 * uProgress;
+  newPosition.z += sin(uTime + position.y) * 100.0 ;
 
   vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
   vec4 viewPosition = viewMatrix * modelPosition;

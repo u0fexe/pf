@@ -3,8 +3,11 @@
   position: relative;
   width: 100%;
   min-height: 500vh;
-  padding-bottom: 10rem;
   visibility: hidden;
+
+  @include media('<=phone') {
+    min-height: 700vh;
+  }
 }
 
 .cases__list {
@@ -12,6 +15,6 @@
 }
 
 .cases__list__item {
-  width: 9rem;
-  height: 9rem;
+  width: 8vmax;
+  height: 8vmax;
 }

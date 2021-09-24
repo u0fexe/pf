@@ -1,6 +1,7 @@
 import { BoxBufferGeometry, DoubleSide, MeshStandardMaterial, SphereBufferGeometry, TetrahedronBufferGeometry, Vector3 } from 'three'
 import ExplorableObject from './ExplorableObject'
 import ExplorableObjects from './ExplorableObjects'
+import fitTexture from '../../Library/Three/Helpers/fitTexture'
 
 export default class Cases extends ExplorableObjects {
   constructor(assets) {
@@ -13,6 +14,7 @@ export default class Cases extends ExplorableObjects {
 
   construct(assets) {
     for (let i = assets.length - 1; i > 0; i--) {
+      fitTexture(assets[i], this.boxes[i] || this.boxes[0])
       const j = Math.floor(Math.random() * (i + 1));
       [assets[i], assets[j]] = [assets[j], assets[i]];
     }

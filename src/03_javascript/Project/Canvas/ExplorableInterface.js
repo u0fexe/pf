@@ -213,11 +213,18 @@ export default class ExplorableInterface {
 
   resize() {
     setTimeout(() => {
+      const mobile = innerWidth < 768
       this.elements.description.mesh.position.set(this.elements.description.box.x - this.elements.description.box.width/2, this.elements.description.box.y + getSize(this.elements.description.mesh).y/2, 0)
+      this.elements.description.mesh.fontSize = mobile ? 14 : 20
+
       this.elements.description.mesh.maxWidth = this.elements.description.box.width
+      this.elements.description.mesh.textAlign = mobile ? 'center' : 'left'
 
       this.elements.name.mesh.position.set(this.elements.name.box.x, this.elements.name.box.y + getSize(this.elements.name.mesh).y/2, 0)
+      this.elements.name.mesh.fontSize = mobile ? 30 : 50
+
       this.elements.link.mesh.position.set(this.elements.link.box.x, this.elements.link.box.y + getSize(this.elements.link.mesh).y/2, 0)
+      this.elements.link.mesh.fontSize = mobile ? 20 : 40
 
     }, 200)
   }

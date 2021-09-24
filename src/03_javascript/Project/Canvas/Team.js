@@ -1,6 +1,7 @@
 import { DoubleSide, MeshStandardMaterial, PlaneBufferGeometry, Vector3 } from 'three'
 import Employee from './Employee'
 import ExplorableObjects from './ExplorableObjects'
+import fitTexture from '../../Library/Three/Helpers/fitTexture'
 
 export default class Team extends ExplorableObjects {
   constructor(assets) {
@@ -13,6 +14,7 @@ export default class Team extends ExplorableObjects {
 
   construct(assets) {
     for (let i = assets.length - 1; i > 0; i--) {
+      fitTexture(assets[i], this.boxes[i] || this.boxes[0])
       const j = Math.floor(Math.random() * (i + 1));
       [assets[i], assets[j]] = [assets[j], assets[i]];
     }
@@ -30,12 +32,13 @@ export default class Team extends ExplorableObjects {
         material.onBeforeCompile = ( shader ) => {
 
           shader.uniforms.uTime = { value: 0 }
+          shader.uniforms.uActive = { value: 1 }
 
-          shader.vertexShader = 'uniform float uTime;\n' + shader.vertexShader
+          shader.vertexShader = 'uniform float uTime;\nuniform float uActive;\n' + shader.vertexShader
           shader.vertexShader = shader.vertexShader.replace(
             '#include <begin_vertex>',
             `
-              float theta = sin( uTime + (position.y + position.x)) * 0.5;
+              float theta = sin( uTime + (position.y + position.x)) * 0.5 * uActive;
               float c = cos( theta );
               float s = sin( theta );
               mat3 m = mat3( c, 0, s, 0, 1, 0, -s, 0, c );
@@ -64,9 +67,10 @@ export default class Team extends ExplorableObjects {
     const screenHeight = innerHeight - box.height
     const frequency = Math.PI * (this.boxes.length / 2)
     const minimizer = object.step * 0.5 + 0.5
+    const widthMultiplier = innerWidth < 768 ? 1.8 : 1.2
 
     mesh.position.y = box.y
-    mesh.position.x = Math.cos(object.step * frequency) * screenWidth * 1 * minimizer
+    mesh.position.x = Math.cos(object.step * frequency) * screenWidth * widthMultiplier * minimizer
     mesh.position.z = Math.sin(object.step * frequency) * ((screenHeight + screenWidth) * 1) * minimizer
     object.initialPosition = new Vector3().copy(mesh.position)
   }
