@@ -36,6 +36,15 @@ export default class Cases extends ExplorableObjects {
     }
   }
 
+  matchSize(id) {
+    const object = this.objects[id]
+    const box = this.boxes[id]
+    const min = object.step * 0.2 + 0.8
+
+    object.mesh.scale.set(box.width * min, box.height * min, (box.width + box.height) / 2 * min)
+    object.initialScale.copy(object.mesh.scale)
+  }
+
   matchPosition(id) {
     const object = this.objects[id]
     const box = this.boxes[id]

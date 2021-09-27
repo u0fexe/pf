@@ -5,7 +5,7 @@ export default class AmbientLight {
   constructor() {
     this.params = {
       desktop: {
-        color: 0x4b0096,
+        color: 0xff7317,
         intensity: 0.5,
       },
 

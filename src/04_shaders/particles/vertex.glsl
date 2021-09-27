@@ -1,5 +1,6 @@
 attribute float size;
 uniform float uProgress;
+uniform float uSizeProgress;
 uniform float uScrollLength;
 uniform float uTime;
 varying vec3 vColor;
@@ -22,7 +23,7 @@ void main() {
   vec4 projectedPosition = projectionMatrix * viewPosition;
 
 
-  gl_PointSize = size * ( 2000.0 / -viewPosition.z );
+  gl_PointSize = size * ( 2000.0 / -viewPosition.z ) * uSizeProgress;
   gl_Position = projectedPosition;
 
   vColor = color;

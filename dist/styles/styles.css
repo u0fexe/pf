@@ -405,4 +405,9 @@ main {
   .cases {
     min-height: 700vh;
   }
+
+  .cases__list__item {
+    width: 8vmax;
+    height: 8vmax;
+  }
 }

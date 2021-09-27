@@ -201,7 +201,8 @@ export default class Canvas extends ThreeCanvas {
 
   yarBoxSmoke() {
     this.yarBoxSmoke = new YarBoxSmoke(this.loader.assets.particles.smoke, this.yarBox, this.camera)
-    this.train.addPassenger(this.yarBoxSmoke.mesh)
+    this.yarBoxSmoke.start()
+    this.redo.add(this.yarBoxSmoke)
   }
 
   yarBoxLid() {
@@ -229,6 +230,7 @@ export default class Canvas extends ThreeCanvas {
 
   particles() {
     const dotParticles = new Particles({ texture: this.loader.assets.particles.dot, colors: ['#ff00c6', '#ffffff', '#ff9800'] })
+    dotParticles.start()
     this.redo.add(dotParticles)
 
     this.loader.assets.particles.sakura.forEach((texture, i) => {
@@ -243,7 +245,7 @@ export default class Canvas extends ThreeCanvas {
         zMultiplier: 3,
         opacity: 0.3
       })
-
+      particles.start()
       this.redo.add(particles)
     })
   }
