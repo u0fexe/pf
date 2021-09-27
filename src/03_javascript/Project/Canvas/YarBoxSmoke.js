@@ -7,7 +7,7 @@ export default class YarBoxSmoke extends Particles {
       texture,
       size: 3000,
       count: 100,
-      opacity: 0.1,
+      opacity: 0.07,
       timeMiltiplier: 0.0002,
       sizeProgress: true,
       opacityProgress: true,

@@ -8,7 +8,7 @@ export default class Employee extends ExplorableObject {
   }
 
   setRotation() {
-    this.cameraRotation.y = -this.mesh.parent.rotation.y % Math.PI
+    this.cameraRotation.y = this.mesh.parent.rotation.y % (Math.PI * 2) * -1
     this.cameraRotation.x = Math.PI * 2
   }
 

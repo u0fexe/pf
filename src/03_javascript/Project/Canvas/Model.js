@@ -7,7 +7,7 @@ export default class Model extends ExplorableObject {
   }
 
   setRotation() {
-    this.cameraRotation.y = -this.mesh.parent.rotation.y % Math.PI
+    this.cameraRotation.y = this.mesh.parent.rotation.y % (Math.PI * 2) * -0.9
     this.cameraRotation.x = Math.PI * 2
   }
 

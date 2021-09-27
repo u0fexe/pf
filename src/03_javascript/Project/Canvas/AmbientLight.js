@@ -5,7 +5,7 @@ export default class AmbientLight {
   constructor() {
     this.params = {
       desktop: {
-        color: 0xff7317,
+        color: 0xf9894e,
         intensity: 0.5,
       },
 
@@ -28,6 +28,19 @@ export default class AmbientLight {
       this.mesh.color.setHex(this.params.mobile.color)
       this.mesh.intensity = this.params.mobile.intensity
     }
+
+  }
+
+  gui(gui) {
+    const folder = gui.addFolder('AmbientLight')
+
+    folder.addColor(this.params.desktop, 'color').onChange((val) => {
+      this.mesh.color.setHex(val)
+    })
+
+    folder.add(this.params.desktop, 'intensity', 0, 10, 0.01).onChange((val) => {
+      this.mesh.intensity = val
+    })
 
   }
 }

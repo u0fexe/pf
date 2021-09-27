@@ -61,8 +61,8 @@ export default class Canvas extends ThreeCanvas {
 
   createComposer() {
     const params = {
-      strength: 1,
-      threshold: 0.5,
+      strength: 0.7,
+      threshold: 0.26,
       radius: 1,
     }
 
@@ -166,12 +166,12 @@ export default class Canvas extends ThreeCanvas {
   ambientLight() {
     this.ambientLight = new AmbientLight()
     this.scene.add(this.ambientLight.mesh)
+    this.ambientLight.gui(gui)
   }
 
   pointLights() {
     this.pointLights = new PointLights()
     this.train.addPassengers(this.pointLights.meshes)
-    // this.pointLights.helpers(this.scene)
   }
 
   explorableInterface() {
