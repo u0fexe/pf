@@ -111,5 +111,9 @@ export default class Loader {
     this.gltfLoader.load('multimedia/models/phone.glb', (gltf) => {
       this.assets.models.phone = gltf.scene
     })
+
+    this.gltfLoader.load('multimedia/models/whiskey.glb', (gltf) => {
+      this.assets.models.whiskey = gltf.scene
+    })
   }
 }

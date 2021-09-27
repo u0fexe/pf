@@ -308,6 +308,14 @@ main {
   height: 2.2vmax;
 }
 
+.model-whiskey {
+  position: absolute;
+  bottom: 250rem;
+  left: 100%;
+  width: 2.2vmax;
+  height: 2.2vmax;
+}
+
 .model-phone {
   position: absolute;
   bottom: 300rem;
