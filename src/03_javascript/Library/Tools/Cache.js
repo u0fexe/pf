@@ -1,4 +1,5 @@
 import checkWebpSupport from "../Utils/checkWebpSupport.js"
+import isMobile from "../Utils/isMobile.js"
 import parseOptions from "../Utils/parseOptions.js"
 
 class Cache {
@@ -14,7 +15,8 @@ class Cache {
     this._findAliases()
 
     this.support = {
-      webp: checkWebpSupport()
+      webp: checkWebpSupport(),
+      isMobileDevice: isMobile()
     }
   }
 

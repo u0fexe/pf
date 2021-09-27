@@ -1,4 +1,3 @@
-import scrollForce from "../../Library/Scroll/Force"
 import ExplorableObject from "./ExplorableObject"
 
 export default class Model extends ExplorableObject {

@@ -20,9 +20,9 @@ export default class YarBoxSmoke extends Particles {
   }
 
   generatePosition(step, frequency, scrollLength) {
-    const x = random(this.yarBox.box.width * 4) * step
-    const y = this.yarBox.box.y  + scrollLength * 0.7 * step
-    const z = random(this.yarBox.mesh.scale.z * 4) * step
+    const x = random(this.yarBox.box.width * 5) * step
+    const y = this.yarBox.box.y  + scrollLength * 0.85 * step
+    const z = random(this.yarBox.mesh.scale.z * 5) * step
 
     return { x, y, z }
   }

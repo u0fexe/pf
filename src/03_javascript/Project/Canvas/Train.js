@@ -21,9 +21,25 @@ export default class Train {
   }
 
   move() {
+    if(innerWidth < 1024) {
+      this.mobileMove()
+    } else {
+      this.desktopMove()
+    }
+  }
+
+  mobileMove() {
     this.progress = scrollForce.scrollValue.stopsDependentInterpolated / scrollModel.scrollLength
     this.group.position.y = scrollModel.scrollLength * (1 - this.progress *  this.progress * this.progress * this.progress )
     this.group.position.z = this.group.userData.z * this.progress
     this.group.rotation.y = this.progress * Math.PI * 5
+  }
+
+  desktopMove() {
+    this.progress = scrollForce.scrollValue.stopsDependentInterpolated / scrollModel.scrollLength
+    this.group.position.y = scrollModel.scrollLength * (1 - this.progress *  this.progress * this.progress * this.progress )
+    this.group.position.z = this.group.userData.z * this.progress - 200 * Math.sin(this.progress * Math.PI * 2.2)
+    this.group.rotation.y = this.progress * Math.PI * 5
+    this.group.rotation.x = Math.sin(this.progress * Math.PI * 2.2) * 0.1
   }
 }
