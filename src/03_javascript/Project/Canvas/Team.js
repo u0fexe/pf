@@ -1,7 +1,6 @@
 import { DoubleSide, MeshStandardMaterial, PlaneBufferGeometry, Vector3 } from 'three'
 import Employee from './Employee'
 import ExplorableObjects from './ExplorableObjects'
-import fitTexture from '../../Library/Three/Helpers/fitTexture'
 
 export default class Team extends ExplorableObjects {
   constructor(assets) {
@@ -13,16 +12,9 @@ export default class Team extends ExplorableObjects {
   }
 
   construct(assets) {
-    for (let i = assets.length - 1; i > 0; i--) {
-      fitTexture(assets[i], this.boxes[i] || this.boxes[0])
-      const j = Math.floor(Math.random() * (i + 1));
-      [assets[i], assets[j]] = [assets[j], assets[i]];
-    }
-
     const geometries = [
       new PlaneBufferGeometry(1, 1, 20, 20),
     ]
-
 
     this.createObjects(
       Employee,

@@ -8,9 +8,16 @@ $font-primary: 'Oswald';
 //   font-display: swap;
 // }
 
+// @font-face {
+//   font-family: $font-primary;
+//   font-weight: 700;
+//   src: url("../multimedia/fonts/Oswald/Oswald-Bold.ttf");
+//   font-display: swap;
+// }
+
 @font-face {
   font-family: $font-primary;
-  font-weight: 700;
-  src: url("../multimedia/fonts/Oswald/Oswald-Bold.ttf");
+  font-weight: 400;
+  src: url("../multimedia/fonts/Oswald/Oswald-Regular.ttf");
   font-display: swap;
 }

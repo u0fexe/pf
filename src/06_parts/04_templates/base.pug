@@ -10,9 +10,10 @@ html(lang='ru')
     title=`${title ? title : 'new app'}`
   body
     #root(data-aliases=aliases data-medias=scrollMedias)
-      block presentation
-      main(data-scroll-section)
-        block main
+      div(data-scroll-section)
+        block presentation
+        main
+          block main
 
     block scripts
     script(src='js/app.js')

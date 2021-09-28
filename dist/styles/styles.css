@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Oswald";
-  font-weight: 700;
-  src: url("../multimedia/fonts/Oswald/Oswald-Bold.ttf");
+  font-weight: 400;
+  src: url("../multimedia/fonts/Oswald/Oswald-Regular.ttf");
   font-display: swap;
 }
 
@@ -105,7 +105,7 @@ main {
 .team,
 .point-lights,
 .models,
-.preloader {
+.preloader__before {
   position: absolute;
   left: 0;
   top: 0;
@@ -123,7 +123,6 @@ main {
 .models,
 .explore__column-left,
 .contacts,
-.preloader,
 .team,
 .cases {
   display: flex;
@@ -156,9 +155,14 @@ main {
 }
 
 .preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
   z-index: 4;
   background-color: black;
-  transition: opacity 2s;
+  transition: opacity 1s;
 }
 
 .loaded .preloader {
@@ -169,16 +173,23 @@ main {
   display: none;
 }
 
-.preloader__logo {
-  margin-top: 2rem;
-  width: 27rem;
+.preloader__before {
+  transition: transform 1s linear;
+  transform-origin: bottom;
+  transform: scaleY(calc(var(--loading, 0) * 1.2));
+  background-color: #ffff84;
 }
 
-.preloader__logo__square {
-  -webkit-animation: preloader 1s infinite;
-  animation: preloader 1s infinite;
-  transform-origin: center;
-  transform-box: fill-box;
+.preloader__number {
+  content: "";
+  position: absolute;
+  right: 2vmax;
+  bottom: 1vmax;
+  z-index: 2;
+  font-size: 1vmax;
+  color: #ffff84;
+  mix-blend-mode: difference;
+  text-transform: uppercase;
 }
 
 .cases {
@@ -384,7 +395,7 @@ main {
 
 .team__list__item {
   width: 7vmax;
-  height: 8vmax;
+  height: 7vmax;
 }
 
 @media (max-width: 1024px) {
@@ -396,6 +407,14 @@ main {
 @media (max-width: 768px) {
   #root {
     font-size: calc(100vw / 768 * 10);
+  }
+
+  .preloader__before {
+    background-color: #ffffff;
+  }
+
+  .preloader__number {
+    font-size: 2vmax;
   }
 
   .explore {

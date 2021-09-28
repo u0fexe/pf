@@ -1,10 +1,14 @@
 .preloader {
-  @extend %cover;
-  @extend %center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
   z-index: z('preloader');
   background-color: black;
 
-  transition: opacity 2s;
+  transition: opacity 1s;
 
   .loaded & {
     opacity: 0;
@@ -15,23 +19,36 @@
   }
 }
 
-.preloader__logo {
-  margin-top: 2rem;
-  width: 27rem;
+
+.preloader__before {
+  @extend %cover;
+  transition: transform 1s linear;
+  transform-origin: bottom;
+  transform: scaleY(calc(var(--loading, 0) * 1.2));
+  background-color: #ffff84;
+
+  @include media('<=tablet-portrait') {
+    background-color: #ffffff;
+  }
 }
 
-.preloader__logo__square {
-  animation: preloader 1s infinite;
-  transform-origin: center;
-  transform-box: fill-box;
+.preloader__number {
+  content: "";
 
-  // .loaded & {
-  //   opacity: 0;
-  // }
+  position: absolute;
+  right: 2vmax;
+  bottom: 1vmax;
 
-  // @keyframes preloader {
-  //   100% {
-  //     transform: rotate(90deg);
-  //   }
-  // }
+  z-index: 2;
+
+  font-size: 1vmax;
+
+  color: #ffff84;
+  mix-blend-mode: difference;
+
+  text-transform: uppercase;
+
+  @include media('<=tablet-portrait') {
+    font-size: 2vmax;
+  }
 }

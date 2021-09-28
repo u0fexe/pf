@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 
 import Stats from 'three/examples/jsm/libs/stats.module.js'
-import * as dat from 'dat.gui'
 
 import ThreeCanvas from '../../Library/Three/Canvas'
 import Composer from '../../Library/Three/Composer'
@@ -11,7 +10,6 @@ import GrainPass from '../../Library/Three/GrainPass'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import scroll from '../../Library/Scroll'
-import scrollModel from '../../Library/Scroll/Model'
 
 import loop from '../../Library/Tools/Loop'
 import bind from '../../Library/Utils/bind'
@@ -32,13 +30,10 @@ import ExploreManager from './ExploreManager'
 import Fog from './Fog'
 import Particles from './Particles'
 import Raycaster from './Raycaster'
-import MouseLight from './MouseLight'
 import Team from './Team'
 import CameraLight from './CameraLight'
-import BottomLight from './BottomLight'
 import Redo from './Redo'
 
-const gui = new dat.GUI()
 const stats = new Stats()
 document.body.appendChild( stats.dom )
 
@@ -50,14 +45,10 @@ export default class Canvas extends ThreeCanvas {
     })
     if(!this.node) return;
 
-    scrollModel.prevents.push(gui.domElement)
-
     this.createComposer()
     bind(['onProgress', 'onLoad'], this)
     this.load()
 
-    // this.renderer.shadowMap.enabled = true
-    // this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
   }
 
   createComposer() {
@@ -75,20 +66,6 @@ export default class Canvas extends ThreeCanvas {
 
     this.composer.addPass(this.bloomPass)
     this.composer.addPass(this.grainPass.pass)
-
-    const folder = gui.addFolder('bloomPass')
-
-    folder.add( params, 'threshold', 0.0, 1.0, 0.01 ).onChange(( value ) => {
-      this.bloomPass.threshold = Number( value )
-    })
-
-    folder.add( params, 'strength', 0.0, 3.0 ).onChange(( value ) => {
-      this.bloomPass.strength = Number( value )
-    })
-
-    folder.add( params, 'radius', 0.0, 1.0 ).step( 0.01 ).onChange(( value ) => {
-      this.bloomPass.radius = Number( value )
-    })
   }
 
   resize() {
@@ -100,19 +77,19 @@ export default class Canvas extends ThreeCanvas {
     this.loader = new Loader(this.onProgress, this.onLoad)
   }
 
-  onProgress() {
-
+  onProgress(_, loaded, total) {
+    const progress = loaded / total
+    document.documentElement.style.setProperty('--loading', progress)
   }
 
   onLoad() {
+
     this.train()
-    this.cameraMan()
     this.redo()
     this.raycaster()
     this.fog()
     this.pointLights()
     this.ambientLight()
-    // this.mouseLight()
     this.player()
     this.explorableInterface()
     this.cases()
@@ -120,27 +97,21 @@ export default class Canvas extends ThreeCanvas {
     this.yarBox()
     this.yarBoxLid()
     this.yarBoxSmoke()
-    // this.bottomLight()
+    this.cameraMan()
     this.cameraLight()
     this.models()
     this.particles()
     this.exploreManager()
     this.activate()
-    // this.controls()
     scroll.resize()
 
-    document.documentElement.classList.add('loaded')
-    document.documentElement.classList.add('ready')
+    setTimeout(() => {
+      document.documentElement.classList.add('loaded')
+    }, 0)
 
-    // setTimeout(() => {
-    //   document.documentElement.classList.add('loaded')
-    // // }, 10000)
-    // }, 0)
-
-    // setTimeout(() => {
-    //   document.documentElement.classList.add('ready')
-    // // }, 13000)
-    // }, 3000)
+    setTimeout(() => {
+      document.documentElement.classList.add('ready')
+    }, 2000)
   }
 
   train() {
@@ -149,7 +120,7 @@ export default class Canvas extends ThreeCanvas {
   }
 
   cameraMan() {
-    this.cameraMan = new CameraMan(this.camera)
+    this.cameraMan = new CameraMan(this.camera, this.yarBox)
   }
 
   redo() {
@@ -162,13 +133,11 @@ export default class Canvas extends ThreeCanvas {
 
   fog() {
     this.fog = new Fog(this.scene)
-    this.fog.gui(gui)
   }
 
   ambientLight() {
     this.ambientLight = new AmbientLight()
     this.scene.add(this.ambientLight.mesh)
-    this.ambientLight.gui(gui)
   }
 
   pointLights() {
@@ -216,16 +185,9 @@ export default class Canvas extends ThreeCanvas {
     this.train.addPassenger(this.yarBoxLid.mesh)
   }
 
-  bottomLight() {
-    this.bottomLight = new BottomLight(this.yarBox.box)
-    this.bottomLight.addTo(this.train.group)
-    this.bottomLight.gui(gui)
-  }
-
   cameraLight() {
     this.cameraLight = new CameraLight()
     this.cameraLight.addTo(this.scene)
-    this.cameraLight.gui(gui)
   }
 
   models() {
@@ -264,13 +226,6 @@ export default class Canvas extends ThreeCanvas {
     ])
   }
 
-  mouseLight() {
-    this.mouseLight = new MouseLight(this.camera, this.train)
-    this.mouseLight.addOnScene(this.scene)
-    // this.mouseLight.helpers(this.scene)
-    // this.mouseLight.gui(gui)
-  }
-
   controls() {
     this.controls = new OrbitControls( this.camera, this.renderer.domElement)
     this.controls.enableDamping = true
@@ -286,7 +241,6 @@ export default class Canvas extends ThreeCanvas {
   }
 
   tick(t) {
-    // this.controls.update()
     this.train.move(t)
     this.grainPass.tick(t)
     this.composer.tick()

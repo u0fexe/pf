@@ -30,17 +30,4 @@ export default class AmbientLight {
     }
 
   }
-
-  gui(gui) {
-    const folder = gui.addFolder('AmbientLight')
-
-    folder.addColor(this.params.desktop, 'color').onChange((val) => {
-      this.mesh.color.setHex(val)
-    })
-
-    folder.add(this.params.desktop, 'intensity', 0, 10, 0.01).onChange((val) => {
-      this.mesh.intensity = val
-    })
-
-  }
 }
