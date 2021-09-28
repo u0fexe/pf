@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 
   z-index: z('preloader');
@@ -39,7 +39,7 @@
   right: 2vmax;
   bottom: 1vmax;
 
-  z-index: 2;
+  z-index: 21;
 
   font-size: 1vmax;
 
@@ -50,5 +50,8 @@
 
   @include media('<=tablet-portrait') {
     font-size: 2vmax;
+    right: 2vmax;
+    bottom: 2vmax;
+    color: #ffffff;
   }
 }

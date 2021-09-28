@@ -158,7 +158,7 @@ main {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   z-index: 4;
   background-color: black;
@@ -185,7 +185,7 @@ main {
   position: absolute;
   right: 2vmax;
   bottom: 1vmax;
-  z-index: 2;
+  z-index: 21;
   font-size: 1vmax;
   color: #ffff84;
   mix-blend-mode: difference;
@@ -449,6 +449,9 @@ main {
 
   .preloader__number {
     font-size: 2vmax;
+    right: 2vmax;
+    bottom: 2vmax;
+    color: #ffffff;
   }
 
   .explore {
@@ -477,7 +480,7 @@ main {
   }
 
   .cases__list__item {
-    width: 8vmax;
-    height: 8vmax;
+    width: 10vmax;
+    height: 10vmax;
   }
 }

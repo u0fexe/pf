@@ -120,6 +120,10 @@ export default class ExplorableInterface {
           element.audio = elementData.audio
           element.href = null
           element.windowName = null
+        } else {
+          element.href = null
+          element.windowName = null
+          element.audio = null
         }
       }
 
@@ -139,7 +143,7 @@ export default class ExplorableInterface {
   }
 
   onMouseEnter(object) {
-    if(!this.active) return;
+    if(!this.active || !this.elements.link.href) return;
     this.mouseElement = object
     this.mouse.z = 1
     root.style.cursor = 'pointer'
@@ -159,7 +163,8 @@ export default class ExplorableInterface {
   }
 
   onLinkClick() {
-    if(!this.active) return;
+    if(!this.active  ) return;
+
     if(this.elements.link.href) {
       open(this.elements.link.href, this.elements.link.windowName).focus()
     } else if(this.elements.link.audio) {

@@ -202,7 +202,6 @@ export default class Canvas extends ThreeCanvas {
     this.redo.add(dotParticles)
 
     this.loader.assets.particles.sakura.forEach((texture, i) => {
-
       const particles = new Particles({
         texture,
         colors: ['#ff0000', '#e5ea00'],
