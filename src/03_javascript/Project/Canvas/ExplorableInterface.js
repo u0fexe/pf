@@ -143,7 +143,7 @@ export default class ExplorableInterface {
   }
 
   onMouseEnter(object) {
-    if(!this.active || !this.elements.link.href) return;
+    if(!this.active) return;
     this.mouseElement = object
     this.mouse.z = 1
     root.style.cursor = 'pointer'
@@ -163,7 +163,7 @@ export default class ExplorableInterface {
   }
 
   onLinkClick() {
-    if(!this.active  ) return;
+    if(!this.active || (!this.elements.link.href && !this.elements.link.audio)) return;
 
     if(this.elements.link.href) {
       open(this.elements.link.href, this.elements.link.windowName).focus()
