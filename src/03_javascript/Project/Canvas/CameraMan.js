@@ -1,5 +1,4 @@
 import anime from "animejs"
-import { Vector3 } from "three"
 import loop from "../../Library/Tools/Loop"
 
 export default class CameraMan {
@@ -21,11 +20,13 @@ export default class CameraMan {
   }
 
   tick(t) {
-    t *= 0.001
+    t *= 0.0004
 
     this.camera.position.z = this.camera.userData.z - (this.camera.userData.z - this.yarBox.mesh.scale.z * 0.6) * this.start
     this.camera.position.x = this.yarBox.mesh.scale.x * 0.01 * this.start
     this.camera.position.y = this.yarBox.mesh.scale.y * -0.2 * this.start
-    this.camera.rotation.z = Math.cos(t) * 0.01
+    this.camera.rotation.z = Math.sin(t) * 0.02
+    this.camera.rotation.x = Math.cos(t ) * 0.01
+    this.camera.rotation.y = Math.sin(t * 2) * 0.01
   }
 }
