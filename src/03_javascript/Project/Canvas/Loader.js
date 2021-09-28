@@ -126,5 +126,9 @@ export default class Loader {
     this.gltfLoader.load('multimedia/models/gear.glb', (gltf) => {
       this.assets.models.gear = gltf.scene
     })
+
+    this.gltfLoader.load('multimedia/models/clock.glb', (gltf) => {
+      this.assets.models.clock = gltf.scene
+    })
   }
 }
