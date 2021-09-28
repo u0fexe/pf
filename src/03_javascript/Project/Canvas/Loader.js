@@ -118,5 +118,9 @@ export default class Loader {
     this.gltfLoader.load('multimedia/models/player.glb', (gltf) => {
       this.assets.models.player = gltf.scene
     })
+
+    this.gltfLoader.load('multimedia/models/gear.glb', (gltf) => {
+      this.assets.models.gear = gltf.scene
+    })
   }
 }

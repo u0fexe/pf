@@ -18,10 +18,11 @@ export default class Models extends ExplorableObjects {
 
       const modelName = node.getAttribute('data-model-name')
       const model = assets[modelName]
+      const newModel = model.clone()
 
-      this.connectParts(model)
+      this.connectParts(newModel)
 
-      this.objects.push(new Model(model, this.boxes[i], i, i / (this.boxes.length - 1)))
+      this.objects.push(new Model(newModel, this.boxes[i], i, i / (this.boxes.length - 1)))
     }
 
     for (let id = 0; id < this.objects.length; id++) {
