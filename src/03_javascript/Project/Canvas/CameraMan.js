@@ -1,4 +1,3 @@
-
 import loop from "../../Library/Tools/Loop"
 
 export default class CameraMan {

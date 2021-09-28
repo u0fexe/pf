@@ -42,10 +42,13 @@ export default class ExplorableObject {
       }
     }
 
+
     if(linkElement) {
       this.data.link = {
         text: linkElement.textContent.trim(),
-        href: linkElement.href
+        href: linkElement.href,
+        audio: linkElement.getAttribute('data-audio'),
+        windowName: linkElement.hasAttribute('data-same-window') ? '_self' : '_blank'
       }
     }
   }

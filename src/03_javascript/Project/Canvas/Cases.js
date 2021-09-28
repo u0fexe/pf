@@ -14,7 +14,7 @@ export default class Cases extends ExplorableObjects {
 
   construct(assets) {
     for (let i = assets.length - 1; i > 0; i--) {
-      fitTexture(assets[i], this.boxes[i] || this.boxes[0])
+      // fitTexture(assets[i], this.boxes[i] || this.boxes[0])
       const j = Math.floor(Math.random() * (i + 1));
       [assets[i], assets[j]] = [assets[j], assets[i]];
     }

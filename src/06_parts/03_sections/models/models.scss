@@ -51,3 +51,12 @@
   width: 2vmax;
   height: 2vmax;
 }
+
+.model-player {
+  position: absolute;
+  bottom: 430rem;
+  --z: -2000;
+  left: 80%;
+  width: 3vmax;
+  height: 3vmax;
+}

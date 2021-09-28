@@ -26,6 +26,7 @@ import YarBoxSmoke from './YarBoxSmoke'
 import YarBoxLid from './YarBoxLid'
 import YarBox from './YarBox'
 import Models from './Models'
+import Player from './Player'
 import ExplorableInterface from './ExplorableInterface'
 import ExploreManager from './ExploreManager'
 import Fog from './Fog'
@@ -112,6 +113,7 @@ export default class Canvas extends ThreeCanvas {
     this.pointLights()
     this.ambientLight()
     // this.mouseLight()
+    this.player()
     this.explorableInterface()
     this.cases()
     this.team()
@@ -174,8 +176,12 @@ export default class Canvas extends ThreeCanvas {
     this.train.addPassengers(this.pointLights.meshes)
   }
 
+  player() {
+    this.player = new Player(this.camera)
+  }
+
   explorableInterface() {
-    this.explorableInterface = new ExplorableInterface()
+    this.explorableInterface = new ExplorableInterface(this.player)
     this.explorableInterface.addTo(this.scene)
     this.explorableInterface.addTo(this.raycaster)
   }

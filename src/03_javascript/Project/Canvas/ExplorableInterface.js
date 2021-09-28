@@ -1,4 +1,4 @@
-import { Box3, Group, ShaderMaterial, Vector2, Vector3 } from 'three'
+import { Group, ShaderMaterial,  Vector3 } from 'three'
 import { Text } from 'troika-three-text'
 import anime from 'animejs'
 
@@ -12,7 +12,7 @@ import loop from '../../Library/Tools/Loop'
 import lerp from '../../Library/Utils/lerp'
 
 export default class ExplorableInterface {
-  constructor() {
+  constructor(player) {
     this.progress = {
       active: 0,
     }
@@ -20,6 +20,8 @@ export default class ExplorableInterface {
     this.mouse = {
       z: 0,
     }
+
+    this.player = player
 
     this.active = false
     this.createElements()
@@ -112,6 +114,12 @@ export default class ExplorableInterface {
 
         if(elementData.href) {
           element.href = elementData.href
+          element.windowName = elementData.windowName
+          element.audio = null
+        } else if(elementData.audio) {
+          element.audio = elementData.audio
+          element.href = null
+          element.windowName = null
         }
       }
 
@@ -152,9 +160,10 @@ export default class ExplorableInterface {
 
   onLinkClick() {
     if(!this.active) return;
-
     if(this.elements.link.href) {
-      open(this.elements.link.href, '_blank').focus()
+      open(this.elements.link.href, this.elements.link.windowName).focus()
+    } else if(this.elements.link.audio) {
+      this.player.play(this.elements.link.audio)
     }
   }
 

@@ -1,6 +1,5 @@
 import { LoadingManager, TextureLoader, FontLoader, CubeTextureLoader } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { preloadFont } from 'troika-three-text'
 
 export default class Loader {
   constructor(onProgress, onLoad) {
@@ -114,6 +113,10 @@ export default class Loader {
 
     this.gltfLoader.load('multimedia/models/whiskey.glb', (gltf) => {
       this.assets.models.whiskey = gltf.scene
+    })
+
+    this.gltfLoader.load('multimedia/models/player.glb', (gltf) => {
+      this.assets.models.player = gltf.scene
     })
   }
 }
