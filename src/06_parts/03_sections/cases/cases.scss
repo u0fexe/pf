@@ -5,7 +5,7 @@
   min-height: 500vh;
   visibility: hidden;
 
-  @include media('<=phone') {
+  @include media('<=tablet-landscape') {
     min-height: 700vh;
   }
 }
@@ -18,7 +18,7 @@
   width: 8vmax;
   height: 8vmax;
 
-  @include media('<=phone') {
+  @include media('<=tablet-landscape') {
     width: 10vmax;
     height: 10vmax;
   }

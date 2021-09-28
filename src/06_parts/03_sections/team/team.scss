@@ -13,4 +13,9 @@
 .team__list__item {
   width: 7vmax;
   height: 7vmax;
+
+  @include media('<=tablet-landscape') {
+    width: 10vmax;
+    height: 10vmax;
+  }
 }
