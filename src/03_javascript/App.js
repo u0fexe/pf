@@ -1,3 +1,4 @@
+import screenSize from './Library/Utils/screenSize'
 import scroll from './Library/Scroll'
 import Canvas from './Project/Canvas'
 
@@ -5,6 +6,9 @@ export default class App {
   constructor() {
     this.scroll()
     this.toggleCanvas()
+
+    screenSize()
+    addEventListener('resize', screenSize)
   }
 
   scroll() {

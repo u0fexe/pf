@@ -37,6 +37,7 @@ export default class CameraMan {
   }
 
   desktopMove(t) {
+
     this.mobileMove(t)
     this.camera.rotation.z = Math.sin(t) * 0.02
     this.camera.rotation.x = Math.cos(t ) * 0.01

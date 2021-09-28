@@ -2,7 +2,7 @@
   position: relative;
   @extend %center;
   width: 100vw;
-  height: 100vh;
+  height: var(--screen-height, 100vh);
   visibility: hidden;
 
   h2 {
