@@ -1,8 +1,7 @@
 @font-face {
   font-family: "Oswald";
-  font-weight: 400;
-  src: url("../multimedia/fonts/Oswald/Oswald-Regular.ttf");
-  font-display: swap;
+  font-weight: 700;
+  src: url("../multimedia/fonts/Oswald/Oswald-Bold.ttf");
 }
 
 *,
@@ -167,16 +166,13 @@ main {
 
 .loaded .preloader {
   opacity: 0;
-}
-
-.ready .preloader {
-  display: none;
+  pointer-events: none;
 }
 
 .preloader__before {
   transition: transform 1s linear;
-  transform-origin: bottom;
-  transform: scaleY(calc(var(--loading, 0) * 1.2));
+  transform-origin: left;
+  transform: scaleX(calc(var(--loading, 0) * 1.2));
   background-color: #ffff84;
 }
 
@@ -185,7 +181,7 @@ main {
   position: absolute;
   right: 2vmax;
   bottom: 1vmax;
-  z-index: 21;
+  z-index: 1;
   font-size: 1vmax;
   color: #ffff84;
   mix-blend-mode: difference;

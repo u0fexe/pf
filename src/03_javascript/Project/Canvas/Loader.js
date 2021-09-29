@@ -74,10 +74,6 @@ export default class Loader {
     this.textureLoader.load('multimedia/images/particles/sakura/petal4.png', texture => {
       this.assets.particles.sakura.push(texture)
     })
-
-    this.textureLoader.load('multimedia/images/particles/firework.png', texture => {
-      this.assets.particles.firework = texture
-    })
   }
 
   loadYarBox() {

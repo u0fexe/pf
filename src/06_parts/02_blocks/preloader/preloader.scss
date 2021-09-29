@@ -12,10 +12,7 @@
 
   .loaded & {
     opacity: 0;
-  }
-
-  .ready & {
-    display: none;
+    pointer-events: none;
   }
 }
 
@@ -23,8 +20,8 @@
 .preloader__before {
   @extend %cover;
   transition: transform 1s linear;
-  transform-origin: bottom;
-  transform: scaleY(calc(var(--loading, 0) * 1.2));
+  transform-origin: left;
+  transform: scaleX(calc(var(--loading, 0) * 1.2));
   background-color: #ffff84;
 
   @include media('<=tablet-portrait') {
@@ -39,7 +36,7 @@
   right: 2vmax;
   bottom: 1vmax;
 
-  z-index: 21;
+  z-index: 1;
 
   font-size: 1vmax;
 

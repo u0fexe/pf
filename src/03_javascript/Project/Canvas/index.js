@@ -1,8 +1,6 @@
 import * as THREE from 'three'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 
-import Stats from 'three/examples/jsm/libs/stats.module.js'
-
 import ThreeCanvas from '../../Library/Three/Canvas'
 import Composer from '../../Library/Three/Composer'
 import GrainPass from '../../Library/Three/GrainPass'
@@ -33,9 +31,6 @@ import Raycaster from './Raycaster'
 import Team from './Team'
 import CameraLight from './CameraLight'
 import Redo from './Redo'
-
-const stats = new Stats()
-document.body.appendChild( stats.dom )
 
 export default class Canvas extends ThreeCanvas {
   constructor(node) {
@@ -105,13 +100,7 @@ export default class Canvas extends ThreeCanvas {
     this.activate()
     scroll.resize()
 
-    setTimeout(() => {
-      document.documentElement.classList.add('loaded')
-    }, 0)
-
-    setTimeout(() => {
-      document.documentElement.classList.add('ready')
-    }, 2000)
+    document.documentElement.classList.add('loaded')
   }
 
   train() {
@@ -243,6 +232,5 @@ export default class Canvas extends ThreeCanvas {
     this.train.move(t)
     this.grainPass.tick(t)
     this.composer.tick()
-    stats.update()
   }
 }
