@@ -12,7 +12,7 @@ export default class Player {
   play(fileName) {
     if(this.playing) return this.stop()
 
-    this.audioLoader.load(`multimedia/music/${fileName}.mp3`, buffer => {
+    this.audioLoader.load(`multimedia/audio/${fileName}.mp3`, buffer => {
        this.sound.setBuffer( buffer )
        this.sound.setLoop( true )
        this.sound.setVolume( 0.5 )

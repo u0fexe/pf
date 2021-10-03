@@ -70,11 +70,15 @@ export default class Canvas extends ThreeCanvas {
 
   load() {
     this.loader = new Loader(this.onProgress, this.onLoad)
+    this.loadingInfoOut = document.querySelector('.preloader__number')
   }
 
   onProgress(_, loaded, total) {
     const progress = loaded / total
     document.documentElement.style.setProperty('--loading', progress)
+    if(this.loadingInfoOut) {
+      this.loadingInfoOut.innerHTML = Math.round(progress * 100) + '%'
+    }
   }
 
   onLoad() {

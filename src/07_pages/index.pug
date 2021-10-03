@@ -10,13 +10,11 @@ block variables
 
     const scrollMedias = `
       {
-        type:: vertical,
         ease:: 0.04,
         smooth,
         speedMultiplier:: 4,
         dragAcceleration:: 1,
         draggable,
-        progressVar,
         smoothWheel:: true,
         staticSections,
         reverse:: -1
@@ -35,3 +33,5 @@ block main
   include ../06_parts/03_sections/point-lights/point-lights.pug
   include ../06_parts/03_sections/models/models.pug
   include ../06_parts/03_sections/explore/explore.pug
+block scripts
+  script(src='external/preloader.js')

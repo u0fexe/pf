@@ -8,7 +8,7 @@
   z-index: z('preloader');
   background-color: black;
 
-  transition: opacity 1s;
+  transition: opacity 2s;
 
   .loaded & {
     opacity: 0;
@@ -17,16 +17,10 @@
 }
 
 
-.preloader__before {
+.preloader::before {
+  content: "";
   @extend %cover;
-  transition: transform 1s linear;
-  transform-origin: left;
-  transform: scaleX(calc(var(--loading, 0) * 1.2));
-  background-color: #ffff84;
-
-  @include media('<=tablet-portrait') {
-    background-color: #ffffff;
-  }
+  background-color: black;
 }
 
 .preloader__number {
@@ -36,17 +30,16 @@
   right: 2vmax;
   bottom: 1vmax;
 
-  z-index: 1;
-
-  font-size: 1vmax;
+  font-size: 2vmax;
 
   color: #ffff84;
-  mix-blend-mode: difference;
 
-  text-transform: uppercase;
+  .loaded & {
+    transition: opacity 0.5s;
+    opacity: 0;
+  }
 
   @include media('<=tablet-landscape') {
-    font-size: 2vmax;
     right: 2vmax;
     bottom: 2vmax;
   }

@@ -10,7 +10,7 @@ export default class ExplorableObjects extends SceneObjects {
 
   createObjects(Wrapper, geometries, materialCallback, ) {
     for(let i = 0; i < this.boxes.length; i++) {
-      let geometry = this.boxes[i].node.hasAttribute('data-geometry') && geometries[this.boxes[i].node.getAttribute('data-geometry')]
+      let geometry = this.boxes[i].node.hasAttribute('data-geometry') && geometries[+this.boxes[i].node.getAttribute('data-geometry')]
       geometry = geometry ? geometry : geometries[Math.floor(Math.random() * geometries.length)]
       const material = materialCallback(i)
       const mesh = new Mesh(geometry, material)

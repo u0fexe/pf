@@ -4,7 +4,7 @@ section.cases
   h2 Работы
   ul.cases__list
     each c, i in cases
-      li.cases__list__item(data-case-src=`multimedia/images/cases/${c.image}.jpg` data-scroll-box="case")
+      li.cases__list__item(data-case-src=`multimedia/images/cases/${c.image}.jpg` data-scroll-box="case" data-geometry="0")
         if c.name
           div(data-name)= c.name
         if c.description
