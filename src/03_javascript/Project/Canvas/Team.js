@@ -19,8 +19,9 @@ export default class Team extends ExplorableObjects {
     this.createObjects(
       Employee,
       geometries,
-      i => {
-        const material = new MeshStandardMaterial({ side: DoubleSide, map: assets[i] })
+      box => {
+        const map = assets.find(asset => asset.userData.element === box.node) || assets[0]
+        const material = new MeshStandardMaterial({ side: DoubleSide, map })
         material.onBeforeCompile = ( shader ) => {
 
           shader.uniforms.uTime = { value: 0 }

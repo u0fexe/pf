@@ -37,6 +37,8 @@ export default class Loader {
   loadCases() {
     document.querySelectorAll('[data-case-src]').forEach(el =>
       this.textureLoader.load(el.getAttribute('data-case-src'), texture => {
+        texture.userData = {}
+        texture.userData.element = el
         this.assets.cases.push(texture)
       })
     )
@@ -45,6 +47,8 @@ export default class Loader {
   loadTeam() {
     document.querySelectorAll('[data-employee-src]').forEach(el =>
       this.textureLoader.load(el.getAttribute('data-employee-src'), texture => {
+        texture.userData = {}
+        texture.userData.element = el
         this.assets.team.push(texture)
       })
     )

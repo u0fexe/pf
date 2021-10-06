@@ -4,7 +4,7 @@ import resizer from '../../Library/Tools/Resizer'
 export default class CameraLight {
   constructor() {
     this.params = {
-      color: 0x562703,
+      color: 0x333333,
       intensity: 0.8,
       distance: 8000,
       angle: 0.11,

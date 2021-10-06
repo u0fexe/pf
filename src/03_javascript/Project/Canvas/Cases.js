@@ -1,7 +1,7 @@
 import { BoxBufferGeometry, DoubleSide, MeshStandardMaterial, SphereBufferGeometry, TetrahedronBufferGeometry, Vector3 } from 'three'
 import ExplorableObject from './ExplorableObject'
 import ExplorableObjects from './ExplorableObjects'
-import fitTexture from '../../Library/Three/Helpers/fitTexture'
+// import fitTexture from '../../Library/Three/Helpers/fitTexture'
 
 export default class Cases extends ExplorableObjects {
   constructor(assets) {
@@ -22,7 +22,10 @@ export default class Cases extends ExplorableObjects {
     this.createObjects(
       ExplorableObject,
       geometries,
-      i => new MeshStandardMaterial({ side: DoubleSide, map: assets[i] })
+      box => {
+        const map = assets.find(asset => asset.userData.element === box.node) || assets[0]
+        return new MeshStandardMaterial({ side: DoubleSide, map })
+      }
     )
 
     for (let id = 0; id < this.objects.length; id++) {
